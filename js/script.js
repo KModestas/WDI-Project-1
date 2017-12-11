@@ -18,11 +18,12 @@ $rollDieButton.on('click', ()=> {
   dieRollNumber = Math.floor(Math.random() * 6) + 1;
   addPlayerTotal();
   checkPosition();
+  gameStatus();
   console.log(dieRollNumber);
   console.log(player1Total);
 });
 
-addPlayerTotal = ()=> {
+addPlayerTotal =()=> {
   if (player1Turn) {
     return player1Total += dieRollNumber ;
   }
@@ -32,17 +33,27 @@ addPlayerTotal = ()=> {
 };
 
 // place player1 on board
-function checkPosition() {
+checkPosition =()=> {
+  $('.player1').removeClass('player1');
   let $player1 = $(`[data-id="${player1Total}"]`);
-
-  $player1Position = $player1.text('X');
+  $player1.addClass('player1');
 }
 
 
 
+gameStatus =()=> {
+  if (player1Total >= 100) {
+    gameOver = true;
+    alert("player1 Wins!");
+  }
+}
+
+// create function that checks if player has class of chimney / candycane if true then move player to checkPosition
+
+// how would
 
 
-checkSquareType = ()=> {
+checkSquareType =()=> {
   // check sqaure type and change playertotal accordingly
   // call this in roll div
 }

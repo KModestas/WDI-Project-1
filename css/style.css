@@ -46,3 +46,7 @@ div {
 .hide {
   display: none;
 }
+
+.player1 {
+  background-color: pink;
+}
