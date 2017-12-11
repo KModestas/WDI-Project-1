@@ -38,3 +38,11 @@ div {
 .coal {
   background: grey;
 }
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}

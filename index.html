@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>First WDI Project</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" charset="utf-8"></script>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <title>First WDI Project</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" charset="utf-8"></script>
+</head>
+<body>
 
-    <main id="game-board">
+  <div class="main-menu">
+    <h1>Chimney's & Candy Canes</h1>
+    <h2>Select Mode</h2>
+    <button>One Player</button>
+    <button>Two Player</button>
+    <button>Play</button>
+  </div>
+
+  <div class="character-select-menu">
+    <h1>Chimney's & Candy Canes</h1>
+    <h2><span>Player One: </span>Select Character</h2>
+    <button>Santa</button>
+    <button>Elf</button>
+    <button>Rudolph</button>
+    <button>Play</button>
+  </div>
+
+  <div>
+    <h2><span>Player 1 </span>Turn</h2>
+    <button class="rollDie">Roll The Die</button>
+    <h3>You rolled a <span>0</span></h3>
+  </div>
+
+  <main id="game-board">
     <div data-id="100">100
     </div>
     <div data-id="99">99
@@ -209,11 +232,10 @@
     </div>
     <div data-id="10">10
     </div>
-    </main>
+  </main>
 
-    <!-- remove brackets from numbers indicating where the player will end up when landing on chimney / candycane -->
 
-    <script src="./js/script.js" type="text/javascript">
-    </script>
+  <script src="./js/script.js" type="text/javascript">
+  </script>
 </body>
 </html>
