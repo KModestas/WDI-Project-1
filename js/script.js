@@ -1,6 +1,8 @@
-$(() => {
+// $(() => {
+//
+// });
 
-});
+
 
 // let player1Score = 3;
 // const $el = $(`[data-id="${player1Score}"]`);
