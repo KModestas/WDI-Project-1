@@ -173,12 +173,12 @@ $rollDieButton.on('click', ()=> {
   switch (turn) {
     case 'player1':
       processTurn(player1);
+      if (gameMode === 'singlePlayer')
+        setTimeout(processTurn(computer),2000);
       break;
+
     case 'player2':
       processTurn(player2);
-      break;
-    case 'computer':
-      processTurn(computer);
       break;
   }
 
@@ -238,7 +238,7 @@ function checkForCandyCanes(player) {
     if (candyCanes[i].position === player.total) {
       player.total = candyCanes[i].targetPosition;
       placePlayer(player);
-      console.log('went up the candy cane');
+      console.log(`${player.displayName} went up the candyCane`);
     }
   }
 }
