@@ -10,7 +10,7 @@ let $square9Target;
 let $player1Square;
 let $square9;
 
-
+// all elements grabbed from DOM
 let $rollDieButton = $('.rollDie');
 
 
@@ -18,27 +18,32 @@ let $rollDieButton = $('.rollDie');
 // if player1Turn add result to player1total
 // else do same but for player2
 
-$rollDieButton.on('click', ()=> {
+function rollDie() {
   dieRollNumber = Math.floor(Math.random() * 6) + 1;
+}
+
+
+
+$rollDieButton.on('click', ()=> {
+  rollDie();
   addPlayerTotal();
   placePlayer1();
-  checkSquareType();
+  checkForChimneys();
   gameStatus();
   console.log(dieRollNumber);
   console.log(player1Total);
 });
 
-addPlayerTotal =()=> {
+function addPlayerTotal() {
   if (player1Turn) {
     return player1Total += dieRollNumber;
-  }
-  else {
+  } else {
     return player2Total += dieRollNumber;
   }
 };
 
 // place player1 on board
-placePlayer1 =()=> {
+function placePlayer1() {
   $('.player1').removeClass('player1');
   $player1Square = $(`[data-id="${player1Total}"]`);
   $player1Square.addClass('player1');
@@ -46,77 +51,78 @@ placePlayer1 =()=> {
 
 
 
-gameStatus =()=> {
+function gameStatus() {
   if (player1Total >= 100) {
     gameOver = true;
     alert("player1 Wins!");
   }
 }
 
+// create an array for chimneys, candycanes, etc and have each snake be its own object with position property which is a number and a target property which is also a number
 
 // chimneys array
 
 const chimneys = [
- {
-   position: 16,
-   targetPosition: 6
- },
- {
-   position: 45,
-   targetPosition: 17
- },
- {
-   position: 53,
-   targetPosition: 32
- },
- {
-   position: 72,
-   targetPosition: 15
- },
- {
-   position: 79,
-   targetPosition: 61
- },
- {
-   position: 94,
-   targetPosition: 74
- },
- {
-   position: 98,
-   targetPosition: 65
- }
+  {
+    position: 16,
+    targetPosition: 6
+  },
+  {
+    position: 45,
+    targetPosition: 17
+  },
+  {
+    position: 53,
+    targetPosition: 32
+  },
+  {
+    position: 72,
+    targetPosition: 15
+  },
+  {
+    position: 79,
+    targetPosition: 61
+  },
+  {
+    position: 94,
+    targetPosition: 74
+  },
+  {
+    position: 98,
+    targetPosition: 65
+  }
 ];
 
 // candycanes array
 
-const candycanes = [
- { position: 52,
-   targetPosition: 85
- },
- {
-   position: 38,
-   targetPosition: 77
- },
- {
-   position: 25,
-   targetPosition: 88
- },
- {
-   position: 28,
-   targetPosition: 59
- },
- {
-   position: 75,
-   targetPosition: 85
- },
- {
-   position: 2,
-   targetPosition: 19
- },
- {
-   position: 9,
-   targetPosition: 31
- },
+const candyCanes = [
+  { position: 52,
+    targetPosition: 85
+  },
+  {
+    position: 38,
+    targetPosition: 77
+  },
+  {
+    position: 25,
+    targetPosition: 88
+  },
+  {
+    position: 28,
+    targetPosition: 59
+  },
+  {
+    position: 75,
+    targetPosition: 85
+  },
+  {
+    position: 2,
+    targetPosition: 19
+  },
+  {
+    position: 9,
+    targetPosition: 31
+  },
 ]
 
 // presents array
@@ -138,26 +144,6 @@ const coals = [
 
 // check sqaure type and change playertotal accordingly
 // call this in roll div
-// checkSquareType =()=> {
-//   // placePlayer1($player1Square);
-//    $square9 = $(`[data-id="9"]`);
-//   $square9Target = $(`[data-id="31"]`);
-//   console.log($square9);
-//   console.log($player1Square);
-//   $square9Attr = $square9Target.attr('data-id');
-//   $square
-//   if (player1Total === $square9) {
-//     console.log('in if statement');
-//     $square9Target.addClass('player1');
-//   }
-//   snakes[3].position  = player1total
-// }
-
-
-
-
-
-// create an array for snakes, ladders, etc and have each snake be its own object with position property which is a number and a target property which is also a number
 
 // inside checksquaretype check against all snake number positions using a for loop use if (snakes[i].position === player1total) {
 //   player1total + snakes[i].target;
@@ -166,3 +152,31 @@ const coals = [
 //
 
 // check if player 1
+
+
+function checkForChimneys() {
+  for (let i = 0; i < chimneys.length; i++) {
+    if (chimneys[i].position === player1Total) {
+      player1Total = chimneys[i].targetPosition;
+      placePlayer1()
+      console.log('went down the chimney');
+    }
+  }
+}
+
+
+function checkForCandyCanes() {
+  for (let i = 0; i < candyCanes.length; i++) {
+    if (candyCanes[i].position === player1Total) {
+      player1Total = candyCanes[i].targetPosition;
+      placePlayer1()
+      console.log('went up the candy cane');
+    }
+  }
+}
+function checkForPresents() {
+
+}
+function checkForCoals() {
+
+}
