@@ -7,7 +7,7 @@ let player2Turn = null;
 let gameOver = false;
 let dieRollNumber = null;
 let $square9Target;
-let $player1;
+let $player1Square;
 let $square9;
 
 
@@ -21,8 +21,8 @@ let $rollDieButton = $('.rollDie');
 $rollDieButton.on('click', ()=> {
   dieRollNumber = Math.floor(Math.random() * 6) + 1;
   addPlayerTotal();
+  placePlayer1();
   checkSquareType();
-  checkPosition();
   gameStatus();
   console.log(dieRollNumber);
   console.log(player1Total);
@@ -38,10 +38,10 @@ addPlayerTotal =()=> {
 };
 
 // place player1 on board
-checkPosition =()=> {
+placePlayer1 =()=> {
   $('.player1').removeClass('player1');
-  $player1 = $(`[data-id="${player1Total}"]`);
-  $player1.addClass('player1');
+  $player1Square = $(`[data-id="${player1Total}"]`);
+  $player1Square.addClass('player1');
 }
 
 
@@ -53,17 +53,82 @@ gameStatus =()=> {
   }
 }
 
-// create function that checks if player has class of chimney / candycane if true then move player to checkPosition
+
+// chimneys array
+
+const chimneys = [
+ {
+   position: 16,
+   targetPosition: 6
+ },
+ {
+   position: 45,
+   targetPosition: 17
+ },
+ {
+   position: 53,
+   targetPosition: 32
+ },
+ {
+   position: 72,
+   targetPosition: 15
+ },
+ {
+   position: 79,
+   targetPosition: 61
+ },
+ {
+   position: 94,
+   targetPosition: 74
+ },
+ {
+   position: 98,
+   targetPosition: 65
+ },
+];
+
+// candycanes array
+
+const candycanes = [
+ {
+
+ }
+]
+
+// presents array
+
+
+
+// coals array
 
 
 // check sqaure type and change playertotal accordingly
 // call this in roll div
-checkSquareType =()=> {
-  // checkPosition($player1);
-   $square9 = $(`[data-id="9"]`);
-  $square9Target = $(`[data-id="31"]`);
-  if ($player1 == $square9) {
-    $square9Target.addClass('.player1');
-  }
+// checkSquareType =()=> {
+//   // placePlayer1($player1Square);
+//    $square9 = $(`[data-id="9"]`);
+//   $square9Target = $(`[data-id="31"]`);
+//   console.log($square9);
+//   console.log($player1Square);
+//   $square9Attr = $square9Target.attr('data-id');
+//   $square
+//   if (player1Total === $square9) {
+//     console.log('in if statement');
+//     $square9Target.addClass('player1');
+//   }
+//   snakes[3].position  = player1total
+// }
 
-}
+
+
+
+
+// create an array for snakes, ladders, etc and have each snake be its own object with position property which is a number and a target property which is also a number
+
+// inside checksquaretype check against all snake number positions using a for loop use if (snakes[i].position === player1total) {
+//   player1total + snakes[i].target;
+// }
+
+//
+
+// check if player 1
