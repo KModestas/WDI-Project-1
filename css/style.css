@@ -50,3 +50,11 @@ div {
 .player1 {
   background-color: pink;
 }
+
+.player2 {
+  background-color: green;
+}
+
+.computer{
+  background-color: orange;
+}

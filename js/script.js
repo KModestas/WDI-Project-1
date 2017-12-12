@@ -1,64 +1,34 @@
-let player1Total = 0;
-let player2Total = 0;
-let computerTotal = 0;
-let computerTurn = false;
-let player1Turn = true; // dont forget to change this
-let player2Turn = null;
+// let player1Total = 0;
+// let player2Total = 0;
+// let computerTotal = 0;
+
 let gameOver = false;
 let dieRollNumber = null;
-let $square9Target;
-let $player1Square;
-let $square9;
+let turn = 'player1';
 
+let $playerSquare = null;
 // all elements grabbed from DOM
 let $rollDieButton = $('.rollDie');
 
+// player objects
 
-// create function that rolls die
-// if player1Turn add result to player1total
-// else do same but for player2
-
-function rollDie() {
-  dieRollNumber = Math.floor(Math.random() * 6) + 1;
+let player1 = {
+  title: 'player1',
+  displayName: 'Player 1', // refers to name you want to display on screen to user
+  total: 0
 }
 
-
-
-$rollDieButton.on('click', ()=> {
-  rollDie();
-  addPlayerTotal();
-  placePlayer1();
-  checkForChimneys();
-  gameStatus();
-  console.log(dieRollNumber);
-  console.log(player1Total);
-});
-
-function addPlayerTotal() {
-  if (player1Turn) {
-    return player1Total += dieRollNumber;
-  } else {
-    return player2Total += dieRollNumber;
-  }
-};
-
-// place player1 on board
-function placePlayer1() {
-  $('.player1').removeClass('player1');
-  $player1Square = $(`[data-id="${player1Total}"]`);
-  $player1Square.addClass('player1');
+let player2 = {
+  title: 'player2',
+  displayName: 'Player 2',
+  total: 0
 }
 
-
-
-function gameStatus() {
-  if (player1Total >= 100) {
-    gameOver = true;
-    alert("player1 Wins!");
-  }
+let computer = {
+  title: 'computer',
+  displayName: 'Computer',
+  total: 0
 }
-
-// create an array for chimneys, candycanes, etc and have each snake be its own object with position property which is a number and a target property which is also a number
 
 // chimneys array
 
@@ -105,7 +75,7 @@ const candyCanes = [
   },
   {
     position: 25,
-    targetPosition: 88
+    targetPosition: 73
   },
   {
     position: 28,
@@ -142,41 +112,131 @@ const coals = [
 ]
 
 
-// check sqaure type and change playertotal accordingly
-// call this in roll div
+// rolls die and stores number in dieRollNumber
 
-// inside checksquaretype check against all snake number positions using a for loop use if (snakes[i].position === player1total) {
-//   player1total + snakes[i].target;
+function rollDie() {
+  dieRollNumber = Math.floor(Math.random() * 6) + 1;
+}
+
+
+// player object is passed in as an argument in this function which then passes a reference to the player object to the processTurn function (the reference being player) which contains all of the other functions that process the object and gives them access to the player object and its properties.
+
+$rollDieButton.on('click', (player)=> {
+  switch (turn) {
+  case 'player1':
+    processTurn(player1);
+  break;
+  case 'player2':
+    processTurn(player2);
+  break;
+  case 'computer':
+    processComputerTurn(computer);
+  break;
+}
+
+  console.log(dieRollNumber);
+  console.log(player.total);
+
+});
+
+function processTurn(player) {
+  rollDie();
+  addPlayerTotal(player); // refactored
+  placePlayer(player); // refactored
+  checkForChimneys(player); // refactored
+  checkForCandyCanes(player) // refactored
+  gameStatus(player); // refactored
+}
+
+// function addPlayerTotal(turn) {
+//   switch (turn) {
+//   case 'player1':
+//   player1Total += dieRollNumber
+//   break;
+//   case 'player2':
+//   player2Total += dieRollNumber
+//   break;
+//   case 'player3':
+//   player3Total += dieRollNumber
+//   break;
+//   case 'computer':
+//   computer += dieRollNumber
+//   break;
 // }
 
-//
+// if you had a player1 object, this would be the same as:
+function addPlayerTotal(player) {
+  player.total += dieRollNumber;
+}
 
-// check if player 1
+
+// place player1 on board
+function placePlayer(player) {
+  $(`.${player.title}`).removeClass(`${player.title}`);
+  $playerSquare = $(`[data-id="${player.total}"]`);
+  $playerSquare.addClass(`${player.title}`);
+}
 
 
-function checkForChimneys() {
+
+function gameStatus(player) {
+  if (player.total >= 100) {
+    gameOver = true;
+    alert(`${player.displayName} wins!`);
+  }
+}
+
+// functions that Check the square type player lands on
+
+function checkForChimneys(player) {
   for (let i = 0; i < chimneys.length; i++) {
-    if (chimneys[i].position === player1Total) {
-      player1Total = chimneys[i].targetPosition;
-      placePlayer1()
-      console.log('went down the chimney');
+    if (chimneys[i].position === player.total) {
+      player.total = chimneys[i].targetPosition;
+      placePlayer(player);
+      console.log(`${player.displayName} went down the chimney`);
     }
   }
 }
 
 
-function checkForCandyCanes() {
+function checkForCandyCanes(player) {
   for (let i = 0; i < candyCanes.length; i++) {
-    if (candyCanes[i].position === player1Total) {
-      player1Total = candyCanes[i].targetPosition;
-      placePlayer1()
+    if (candyCanes[i].position === player.total) {
+      player.total = candyCanes[i].targetPosition;
+      placePlayer(player);
       console.log('went up the candy cane');
     }
   }
 }
 function checkForPresents() {
-
+  for (let i = 0; i < presents.length; i++) {
+    if (presents[i].position === player.total) {
+      player1Turn = true;
+      console.log('player1 has been gifted another go, merry christmas!');
+    }
+  }
 }
+
 function checkForCoals() {
-
+  for (let i = 0; i < coals.length; i++) {
+    if (coals[i].position === player.total) {
+      player2Turn = true;
+      console.log('player1 has been naughty this year and must miss their go');
+    }
+  }
 }
+
+//
+// create constrcutor function with properties playetotal, method :
+
+
+// 1) create turn variable that is equal to player1 at the square9Target
+//2)
+
+
+
+
+
+
+// refactoring with objects
+// 1) player1 as an object with total property
