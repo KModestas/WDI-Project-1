@@ -1,34 +1,44 @@
-// let player1Total = 0;
-// let player2Total = 0;
-// let computerTotal = 0;
+
 
 let gameOver = false;
+let gameMode = null;
+let computerSelectTurn = null;
 let dieRollNumber = null;
 let turn = 'player1';
 
 let $playerSquare = null;
+
 // all elements grabbed from DOM
-let $rollDieButton = $('.rollDie');
+const $rollDieButton = $('.rollDie');
+const $singlePlayerButton = $('.singlePlayer');
+const $characterButton = $('.characterButton');
 
 // player objects
 
-let player1 = {
+const player1 = {
   title: 'player1',
   displayName: 'Player 1', // refers to name you want to display on screen to user
-  total: 0
-}
+  total: 0,
+  character: null // this value must match up to the css class that displays the character image
+};
 
-let player2 = {
+const player2 = {
   title: 'player2',
   displayName: 'Player 2',
-  total: 0
-}
+  total: 0,
+  character: null
+};
 
-let computer = {
+const computer = {
   title: 'computer',
   displayName: 'Computer',
-  total: 0
-}
+  total: 0,
+  character: null
+};
+
+// characters array
+
+const characters = ['santa', 'elf'];
 
 // chimneys array
 
@@ -92,8 +102,8 @@ const candyCanes = [
   {
     position: 9,
     targetPosition: 31
-  },
-]
+  }
+];
 
 // presents array
 
@@ -101,7 +111,7 @@ const presents = [
   { position: 12 },
   { position: 56 },
   { position: 82 }
-]
+];
 
 // coals array
 
@@ -109,7 +119,24 @@ const coals = [
   { position: 95 },
   { position: 13 },
   { position: 22 }
-]
+];
+
+
+// singplayer game mode
+
+$singlePlayerButton.on('click', function(){
+   gameMode = 'singlePlayer';
+   computerSelectTurn = false;
+  // character-select-menu = display block
+});
+
+
+
+
+
+
+
+
 
 
 // rolls die and stores number in dieRollNumber
@@ -121,21 +148,21 @@ function rollDie() {
 
 // player object is passed in as an argument in this function which then passes a reference to the player object to the processTurn function (the reference being player) which contains all of the other functions that process the object and gives them access to the player object and its properties.
 
-$rollDieButton.on('click', (player)=> {
+$rollDieButton.on('click', ()=> {
   switch (turn) {
-  case 'player1':
-    processTurn(player1);
-  break;
-  case 'player2':
-    processTurn(player2);
-  break;
-  case 'computer':
-    processComputerTurn(computer);
-  break;
-}
+    case 'player1':
+      processTurn(player1);
+      break;
+    case 'player2':
+      processTurn(player2);
+      break;
+    case 'computer':
+      processTurn(computer);
+      break;
+  }
 
   console.log(dieRollNumber);
-  console.log(player.total);
+  console.log(player1.total);
 
 });
 
@@ -144,38 +171,24 @@ function processTurn(player) {
   addPlayerTotal(player); // refactored
   placePlayer(player); // refactored
   checkForChimneys(player); // refactored
-  checkForCandyCanes(player) // refactored
+  checkForCandyCanes(player); // refactored
   gameStatus(player); // refactored
 }
 
-// function addPlayerTotal(turn) {
-//   switch (turn) {
-//   case 'player1':
-//   player1Total += dieRollNumber
-//   break;
-//   case 'player2':
-//   player2Total += dieRollNumber
-//   break;
-//   case 'player3':
-//   player3Total += dieRollNumber
-//   break;
-//   case 'computer':
-//   computer += dieRollNumber
-//   break;
-// }
 
-// if you had a player1 object, this would be the same as:
+
 function addPlayerTotal(player) {
   player.total += dieRollNumber;
 }
 
 
-// place player1 on board
+// place player on board
 function placePlayer(player) {
   $(`.${player.title}`).removeClass(`${player.title}`);
   $playerSquare = $(`[data-id="${player.total}"]`);
   $playerSquare.addClass(`${player.title}`);
 }
+// change player.title to player.character inorder to display the correct image
 
 
 
@@ -225,18 +238,3 @@ function checkForCoals() {
     }
   }
 }
-
-//
-// create constrcutor function with properties playetotal, method :
-
-
-// 1) create turn variable that is equal to player1 at the square9Target
-//2)
-
-
-
-
-
-
-// refactoring with objects
-// 1) player1 as an object with total property

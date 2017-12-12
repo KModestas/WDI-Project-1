@@ -47,6 +47,8 @@ div {
   display: none;
 }
 
+/*change these class names to santa, eld, rudolph and snowman*/
+
 .player1 {
   background-color: pink;
 }
