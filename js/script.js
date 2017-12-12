@@ -84,22 +84,56 @@ const chimneys = [
  {
    position: 98,
    targetPosition: 65
- },
+ }
 ];
 
 // candycanes array
 
 const candycanes = [
+ { position: 52,
+   targetPosition: 85
+ },
  {
-
- }
+   position: 38,
+   targetPosition: 77
+ },
+ {
+   position: 25,
+   targetPosition: 88
+ },
+ {
+   position: 28,
+   targetPosition: 59
+ },
+ {
+   position: 75,
+   targetPosition: 85
+ },
+ {
+   position: 2,
+   targetPosition: 19
+ },
+ {
+   position: 9,
+   targetPosition: 31
+ },
 ]
 
 // presents array
 
-
+const presents = [
+  { position: 12 },
+  { position: 56 },
+  { position: 82 }
+]
 
 // coals array
+
+const coals = [
+  { position: 95 },
+  { position: 13 },
+  { position: 22 }
+]
 
 
 // check sqaure type and change playertotal accordingly
