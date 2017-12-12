@@ -122,22 +122,43 @@ const coals = [
 ];
 
 
-// singplayer game mode
+// singplayer game mode functionality
 
 $singlePlayerButton.on('click', function(){
-   gameMode = 'singlePlayer';
-   computerSelectTurn = false;
+  gameMode = 'singlePlayer';
+  computerSelectTurn = false;
+  console.log(gameMode);
+  console.log(computerSelectTurn);
   // character-select-menu = display block
 });
 
+$characterButton.on('click', function(e){
+ setPlayer1Property(e);
+ computersChoice(e);
 
 
+})
 
+function setPlayer1Property(e) {
+  let player1CharacterProperty = e.target.innerText;
+  player1CharacterProperty = player1CharacterProperty.toLowerCase();
+  player1.character = player1CharacterProperty;
 
+  for (let i = 0; i < characters.length; i++) {
+    if (player1.character === characters[i]) {
+      characters.splice(i, 1);
+    }
+  }
+  computerSelectTurn = true;
+  console.log(computerSelectTurn);
 
+}
 
-
-
+function computersChoice() {
+  if (computerSelectTurn) {
+    computer.character = characters[0];
+  }
+}
 
 // rolls die and stores number in dieRollNumber
 
@@ -184,9 +205,9 @@ function addPlayerTotal(player) {
 
 // place player on board
 function placePlayer(player) {
-  $(`.${player.title}`).removeClass(`${player.title}`);
+  $(`.${player.character}`).removeClass(`${player.character}`);
   $playerSquare = $(`[data-id="${player.total}"]`);
-  $playerSquare.addClass(`${player.title}`);
+  $playerSquare.addClass(`${player.character}`);
 }
 // change player.title to player.character inorder to display the correct image
 
