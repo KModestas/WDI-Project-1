@@ -5,7 +5,7 @@ let gameMode = null;
 let computerSelectTurn = null;
 let dieRollNumber = null;
 let turn = 'player1';
-
+let removedCharacter;
 
 let $playerSquare = null;
 
@@ -15,8 +15,8 @@ const $singlePlayerButton = $('.singlePlayer');
 const $characterButton = $('.characterButton');
 const $mainMenu = $('.main-menu');
 const $characterMenu = $('.character-select-menu');
-const $goBack = $('.go-back');
-const $playButton = $('.play');
+// const $goBack = $('.go-back');
+// const $playButton = $('.play');
 const $gameBoard = $('.game-board');
 const $rollDieDiv = $('.roll-die-div');
 
@@ -147,6 +147,7 @@ $singlePlayerButton.on('click', function(){
 $characterButton.on('click', function(e){
   setPlayer1Property(e);
   computersChoice(e);
+  loadGame();
 });
 
 
@@ -158,7 +159,8 @@ function setPlayer1Property(e) {
 
   for (let i = 0; i < characters.length; i++) {
     if (player1.character === characters[i]) {
-      characters.splice(i, 1);
+      removedCharacter = characters.splice(i, 1);
+      removedCharacter = removedCharacter.toString();
     }
   }
 
@@ -170,25 +172,27 @@ function setPlayer1Property(e) {
 
 }
 
-function computersChoice() {
+function computersChoice(e) {
   if (computerSelectTurn) {
-    computer.character = characters[0];
-  }
-}
+  computer.character = characters[0];
+}}
+
 
 // $goBack.on('click', function(){
 //   $mainMenu.show();
-//   $characterMenu.hide();
+//   $characterMenu.removeClass('visible');
+//   characters[1] = removedCharacter;
+//   console.log(characters);
 //
 // });
 
 
 
-  $playButton.on('click', function(){
+  function loadGame() {
   $characterMenu.hide();
-  $gameBoard.show();
-  $rollDieDiv.show();
-});
+  $gameBoard.addClass('visible');
+  $rollDieDiv.addClass('visible');
+}
 
 
 
