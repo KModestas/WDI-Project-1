@@ -2,35 +2,72 @@
   box-sizing: border-box;
 }
 
+body {
+  /*background: url("./Downloads/ws_Ice_Firs_1440x900.jpg");*/
+  background-size: cover;
+  font-family: 'Rubik', sans-serif;
+}
+
+button, input {
+  font-family: 'Rubik', sans-serif;
+}
+
 main {
-  display: flex;
+  /*display: flex;*/
   border: 1px solid black;
-  flex-wrap: wrap;
+  /*flex-wrap: wrap;*/
   width: 750px;
   height: 750px;
 }
 
 div {
   border: 1px solid black;
-  width: 10%;
-  height: 10%;
 }
 
+h1 {
+  display: block;
+  margin: 0 auto;
+  width: 500px;
+  font-size: 30px;
+  padding: 50px;
+}
 /*menu div styles*/
 
 .main-menu {
   display: flex;
+  flex-grow: 1;
   flex-wrap: wrap;
-  width: 50vw;
-  height: 300px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 20%;
+  height: 350px;
   margin: 0 auto;
   margin-top: auto;
 }
 
-.character-select-menu {
+.main-menu h2 {
 
 }
 
+
+.character-select-menu {
+  display: none;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 20%;
+  height: 350px;
+  margin: 0 auto;
+  margin-top: auto;
+  text-align: center;
+}
+
+.character-select-menu.visible{
+  display: flex;
+}
 /*divs where game is played*/
 
  .roll-die-div {

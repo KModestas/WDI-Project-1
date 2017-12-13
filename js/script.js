@@ -5,7 +5,7 @@ let gameMode = null;
 let computerSelectTurn = null;
 let dieRollNumber = null;
 let turn = 'player1';
-let computerTurn = true;
+
 
 let $playerSquare = null;
 
@@ -13,6 +13,12 @@ let $playerSquare = null;
 const $rollDieButton = $('.rollDie');
 const $singlePlayerButton = $('.singlePlayer');
 const $characterButton = $('.characterButton');
+const $mainMenu = $('.main-menu');
+const $characterMenu = $('.character-select-menu');
+const $goBack = $('.go-back');
+const $playButton = $('.play');
+const $gameBoard = $('.game-board');
+const $rollDieDiv = $('.roll-die-div');
 
 // player objects
 
@@ -133,13 +139,17 @@ $singlePlayerButton.on('click', function(){
   computerSelectTurn = false;
   console.log(gameMode);
   console.log(computerSelectTurn);
-  // character-select-menu = display block
+  $mainMenu.hide();
+  $characterMenu.addClass('visible');
+
 });
 
 $characterButton.on('click', function(e){
   setPlayer1Property(e);
   computersChoice(e);
 });
+
+
 
 function setPlayer1Property(e) {
   let player1CharacterProperty = e.target.innerText;
@@ -165,6 +175,26 @@ function computersChoice() {
     computer.character = characters[0];
   }
 }
+
+// $goBack.on('click', function(){
+//   $mainMenu.show();
+//   $characterMenu.hide();
+//
+// });
+
+
+
+  $playButton.on('click', function(){
+  $characterMenu.hide();
+  $gameBoard.show();
+  $rollDieDiv.show();
+});
+
+
+
+
+
+
 
 // rolls die and stores number in dieRollNumber
 
