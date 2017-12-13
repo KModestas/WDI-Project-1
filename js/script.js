@@ -5,6 +5,7 @@ let gameMode = null;
 let computerSelectTurn = null;
 let dieRollNumber = null;
 let turn = 'player1';
+let computerTurn = true;
 
 let $playerSquare = null;
 
@@ -19,21 +20,24 @@ const player1 = {
   title: 'player1',
   displayName: 'Player 1', // refers to name you want to display on screen to user
   total: 0,
-  character: null // this value must match up to the css class that displays the character image
+  character: null ,
+  coal: false// this value must match up to the css class that displays the character image
 };
 
 const player2 = {
   title: 'player2',
   displayName: 'Player 2',
   total: 0,
-  character: null
+  character: null,
+  coal: false
 };
 
 const computer = {
   title: 'computer',
   displayName: 'Computer',
   total: 0,
-  character: null
+  character: null,
+  coal: false
 };
 
 // characters array
@@ -118,7 +122,19 @@ const presents = [
 const coals = [
   { position: 95 },
   { position: 13 },
-  { position: 22 }
+  { position: 23 },
+  { position: 24 },
+  { position: 25 },
+  { position: 26 },
+  { position: 27 },
+  { position: 28 },
+  { position: 29 },
+  { position: 30 },
+  { position: 31 },
+  { position: 32 },
+  { position: 34 },
+  { position: 36 }
+
 ];
 
 
@@ -147,7 +163,11 @@ function setPlayer1Property(e) {
       characters.splice(i, 1);
     }
   }
-  computerSelectTurn = true;
+
+  if (gameMode = 'singlePlayer') {
+    computerSelectTurn = true;
+  }
+
   console.log(computerSelectTurn);
 
 }
@@ -160,10 +180,14 @@ function computersChoice() {
 
 // rolls die and stores number in dieRollNumber
 
-function rollDie() {
+function rollDie(player) {
   dieRollNumber = Math.floor(Math.random() * 6) + 1;
+  console.log(`${player.title} ${dieRollNumber}`);
+  console.log(`${player.title} ${player.total}`);
 }
 
+// have coal property on each object
+// have if statement that checks if coal is true, if thats the case then dont process the turn and then change coal proerty to false;
 
 // player object is passed in as an argument in this function which then passes a reference to the player object to the processTurn function (the reference being player) which contains all of the other functions that process the object and gives them access to the player object and its properties.
 
@@ -171,44 +195,50 @@ $rollDieButton.on('click', ()=> {
   $rollDieButton.prop( 'disabled', true );
   switch (turn) {
     case 'player1':
-      processTurn(player1);
-      if (gameMode === 'singlePlayer')
-        setTimeout(function(){
-          processTurn(computer);
-        },1000);
-      break;
+    processTurn(player1);
+    if (gameMode === 'singlePlayer')
+    setTimeout(function(){
+      processTurn(computer);
+    },1000);
+    break;
     case 'player2':
-      processTurn(player2);
-      break;
+    processTurn(player2);
+    break;
   }
+
   setTimeout(function(){
     $rollDieButton.prop( 'disabled', false );
   },1000);
-  console.log(dieRollNumber);
-  console.log(player1.total);
+
 
 });
 
 function processTurn(player) {
-  rollDie();
-  addPlayerTotal(player); // refactored
-  placePlayer(player); // refactored
-  checkForChimneys(player); // refactored
-  checkForCandyCanes(player); // refactored
-  gameStatus(player); // refactored
-  changeTurn();
-
+  // should check for player.coal to be true.
+  if (player.coal) {
+    player.coal = false;
+    console.log(`${player.title} has missed their go`);
+  } else if (!player.coal) {
+    console.log(`${player.title} turn`);
+    rollDie(player);
+    addPlayerTotal(player); // refactored
+    placePlayer(player); // refactored
+    addCoal(player); // add coal if the player total is the same as a coal square
+    checkForChimneys(player); // refactored
+    checkForCandyCanes(player); // refactored
+    gameStatus(player); // refactored
+  }
 }
 
 // create function in processturn that changes the turn variable to the appropriate players turn
 
-function changeTurn() {
-  if (turn === 'player1' && gameMode === 'singlePlayer') {
-    turn = 'computer';
-  } else if (turn === 'computer' && gameMode === 'singlePlayer') {
-    turn = 'singlePlayer';
-  }
-}
+// function changeTurn() {
+//   if (turn === 'player1' && gameMode === 'singlePlayer') {
+//
+//   } else if (turn === 'computer' && gameMode === 'singlePlayer') {
+//     turn = 'singlePlayer';
+//   }
+// }
 
 // then computer can have its own switch code block on rollediebutton
 
@@ -261,17 +291,19 @@ function checkForCandyCanes(player) {
 function checkForPresents(player) {
   for (let i = 0; i < presents.length; i++) {
     if (presents[i].position === player.total) {
-      player1Turn = true;
-      console.log('player1 has been gifted another go, merry christmas!');
+      // player.present = true;
+      console.log(`${player.title} has been gifted another go, merry christmas!`);
     }
   }
 }
 
-function checkForCoals(player) {
+
+function addCoal(player) {
   for (let i = 0; i < coals.length; i++) {
     if (coals[i].position === player.total) {
-      player2Turn = true;
-      console.log('player1 has been naughty this year and must miss their go');
+      player.coal = true;
+      console.log(`${player.title} has been naughty this year and must miss their go`);
+      console.log(`player.coals: ${player.coal}`);
     }
   }
 }
