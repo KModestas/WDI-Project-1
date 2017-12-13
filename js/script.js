@@ -44,10 +44,6 @@ const characters = ['santa', 'elf'];
 
 const chimneys = [
   {
-    position: 16,
-    targetPosition: 6
-  },
-  {
     position: 45,
     targetPosition: 17
   },
@@ -70,6 +66,10 @@ const chimneys = [
   {
     position: 98,
     targetPosition: 65
+  },
+  {
+    position: 86,
+    targetPosition: 67
   }
 ];
 
@@ -133,11 +133,9 @@ $singlePlayerButton.on('click', function(){
 });
 
 $characterButton.on('click', function(e){
- setPlayer1Property(e);
- computersChoice(e);
-
-
-})
+  setPlayer1Property(e);
+  computersChoice(e);
+});
 
 function setPlayer1Property(e) {
   let player1CharacterProperty = e.target.innerText;
@@ -170,18 +168,22 @@ function rollDie() {
 // player object is passed in as an argument in this function which then passes a reference to the player object to the processTurn function (the reference being player) which contains all of the other functions that process the object and gives them access to the player object and its properties.
 
 $rollDieButton.on('click', ()=> {
+  $rollDieButton.prop( 'disabled', true );
   switch (turn) {
     case 'player1':
       processTurn(player1);
       if (gameMode === 'singlePlayer')
-        setTimeout(processTurn(computer),2000);
+        setTimeout(function(){
+          processTurn(computer);
+        },1000);
       break;
-
     case 'player2':
       processTurn(player2);
       break;
   }
-
+  setTimeout(function(){
+    $rollDieButton.prop( 'disabled', false );
+  },1000);
   console.log(dieRollNumber);
   console.log(player1.total);
 
@@ -194,9 +196,23 @@ function processTurn(player) {
   checkForChimneys(player); // refactored
   checkForCandyCanes(player); // refactored
   gameStatus(player); // refactored
+  changeTurn();
+
 }
 
+// create function in processturn that changes the turn variable to the appropriate players turn
 
+function changeTurn() {
+  if (turn === 'player1' && gameMode === 'singlePlayer') {
+    turn = 'computer';
+  } else if (turn === 'computer' && gameMode === 'singlePlayer') {
+    turn = 'singlePlayer';
+  }
+}
+
+// then computer can have its own switch code block on rollediebutton
+
+// have the check for coals and for presents function in processturn, BEFORE the changeturn function
 
 function addPlayerTotal(player) {
   player.total += dieRollNumber;
@@ -242,7 +258,7 @@ function checkForCandyCanes(player) {
     }
   }
 }
-function checkForPresents() {
+function checkForPresents(player) {
   for (let i = 0; i < presents.length; i++) {
     if (presents[i].position === player.total) {
       player1Turn = true;
@@ -251,7 +267,7 @@ function checkForPresents() {
   }
 }
 
-function checkForCoals() {
+function checkForCoals(player) {
   for (let i = 0; i < coals.length; i++) {
     if (coals[i].position === player.total) {
       player2Turn = true;
