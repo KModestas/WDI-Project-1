@@ -122,19 +122,7 @@ const presents = [
 const coals = [
   { position: 95 },
   { position: 13 },
-  { position: 23 },
-  { position: 24 },
-  { position: 25 },
-  { position: 26 },
-  { position: 27 },
-  { position: 28 },
-  { position: 29 },
-  { position: 30 },
-  { position: 31 },
-  { position: 32 },
-  { position: 34 },
-  { position: 36 }
-
+  { position: 23 }
 ];
 
 
@@ -263,47 +251,52 @@ function gameStatus(player) {
   if (player.total >= 100) {
     gameOver = true;
     alert(`${player.displayName} wins!`);
-  }
-}
+    // } else if (player.total > 100) {
+    //   player.total - dieRollNumber;
+    //   const winningNumber = player.total - 100;
+    //   console.log(`${player.title} rolled a ${dieRollNumber} but needs a ${winningNumber} to win`);
+    // }
+  }}
 
-// functions that Check the square type player lands on
+  // functions that Check the square type player lands on
 
-function checkForChimneys(player) {
-  for (let i = 0; i < chimneys.length; i++) {
-    if (chimneys[i].position === player.total) {
-      player.total = chimneys[i].targetPosition;
-      placePlayer(player);
-      console.log(`${player.displayName} went down the chimney`);
+  function checkForChimneys(player) {
+    for (let i = 0; i < chimneys.length; i++) {
+      if (chimneys[i].position === player.total) {
+        player.total = chimneys[i].targetPosition;
+        placePlayer(player);
+        console.log(`${player.displayName} went down the chimney`);
+      }
     }
   }
-}
 
 
-function checkForCandyCanes(player) {
-  for (let i = 0; i < candyCanes.length; i++) {
-    if (candyCanes[i].position === player.total) {
-      player.total = candyCanes[i].targetPosition;
-      placePlayer(player);
-      console.log(`${player.displayName} went up the candyCane`);
+  function checkForCandyCanes(player) {
+    for (let i = 0; i < candyCanes.length; i++) {
+      if (candyCanes[i].position === player.total) {
+        player.total = candyCanes[i].targetPosition;
+        placePlayer(player);
+        console.log(`${player.displayName} went up the candyCane`);
+      }
     }
   }
-}
-function checkForPresents(player) {
-  for (let i = 0; i < presents.length; i++) {
-    if (presents[i].position === player.total) {
-      // player.present = true;
-      console.log(`${player.title} has been gifted another go, merry christmas!`);
+
+  function checkForPresents(player) {
+    for (let i = 0; i < presents.length; i++) {
+      if (presents[i].position === player.total) {
+        // player.present = true;
+        console.log(`${player.title} has been gifted another go, merry christmas!`);
+      }
     }
   }
-}
 
 
-function addCoal(player) {
-  for (let i = 0; i < coals.length; i++) {
-    if (coals[i].position === player.total) {
-      player.coal = true;
-      console.log(`${player.title} has been naughty this year and must miss their go`);
-      console.log(`player.coals: ${player.coal}`);
+  function addCoal(player) {
+    for (let i = 0; i < coals.length; i++) {
+      if (coals[i].position === player.total) {
+        player.coal = true;
+        console.log(`${player.title} has been naughty this year and must miss their go`);
+        console.log(`player.coals: ${player.coal}`);
+      }
     }
   }
-}

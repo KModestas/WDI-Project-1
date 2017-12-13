@@ -16,10 +16,43 @@ div {
   height: 10%;
 }
 
-.player1 {
-  background-color: red;
+/*menu div styles*/
+
+.main-menu {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50vw;
+  height: 300px;
+  margin: 0 auto;
+  margin-top: auto;
 }
 
+.character-select-menu {
+
+}
+
+/*divs where game is played*/
+
+ .roll-die-div {
+
+}
+
+.game-board {
+}
+
+
+
+/*divs display toggles by JS*/
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+/*special square type styles*/
 
 .candy-cane {
   background: red;
@@ -39,15 +72,8 @@ div {
   background: grey;
 }
 
-.show {
-  display: block;
-}
 
-.hide {
-  display: none;
-}
-
-/*change these class names to santa, eld, rudolph and snowman*/
+/*player character images*/
 
 .santa {
   background-color: pink;
