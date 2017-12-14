@@ -5,20 +5,17 @@ let gameMode = null;
 let computerSelectTurn = null;
 let dieRollNumber = null;
 let turn = 'player1';
-
-
+let removedCharacter;
 let $playerSquare = null;
 
 // all elements grabbed from DOM
 const $rollDieButton = $('.rollDie');
-const $singlePlayerButton = $('.singlePlayer');
 const $characterButton = $('.characterButton');
-const $mainMenu = $('.main-menu');
 const $characterMenu = $('.character-select-menu');
-const $goBack = $('.go-back');
-const $playButton = $('.play');
 const $gameBoard = $('.game-board');
 const $rollDieDiv = $('.roll-die-div');
+const $player1GameLog = $('.player1GameLog');
+const $computerGameLog = $('.computerGameLog');
 
 // player objects
 
@@ -26,17 +23,10 @@ const player1 = {
   title: 'player1',
   displayName: 'Player 1', // refers to name you want to display on screen to user
   total: 0,
-  character: null ,
+  character: null,
   coal: false// this value must match up to the css class that displays the character image
 };
 
-const player2 = {
-  title: 'player2',
-  displayName: 'Player 2',
-  total: 0,
-  character: null,
-  coal: false
-};
 
 const computer = {
   title: 'computer',
@@ -134,19 +124,19 @@ const coals = [
 
 // singplayer game mode functionality
 
-$singlePlayerButton.on('click', function(){
-  gameMode = 'singlePlayer';
-  computerSelectTurn = false;
-  console.log(gameMode);
-  console.log(computerSelectTurn);
-  $mainMenu.hide();
-  $characterMenu.addClass('visible');
-
-});
+// $singlePlayerButton.on('click', function(){
+//   computerSelectTurn = false;
+//   console.log(gameMode);
+//   console.log(computerSelectTurn);
+//   $mainMenu.hide();
+//   $characterMenu.addClass('visible');
+//
+// });
 
 $characterButton.on('click', function(e){
   setPlayer1Property(e);
   computersChoice(e);
+  loadGame();
 });
 
 
@@ -158,37 +148,29 @@ function setPlayer1Property(e) {
 
   for (let i = 0; i < characters.length; i++) {
     if (player1.character === characters[i]) {
-      characters.splice(i, 1);
+      removedCharacter = characters.splice(i, 1);
+      removedCharacter = removedCharacter.toString();
     }
   }
 
-  if (gameMode = 'singlePlayer') {
-    computerSelectTurn = true;
-  }
-
+  computerSelectTurn = true;
   console.log(computerSelectTurn);
 
 }
 
-function computersChoice() {
+function computersChoice(e) {
   if (computerSelectTurn) {
     computer.character = characters[0];
   }
 }
 
-// $goBack.on('click', function(){
-//   $mainMenu.show();
-//   $characterMenu.hide();
-//
-// });
 
 
-
-  $playButton.on('click', function(){
+function loadGame() {
   $characterMenu.hide();
-  $gameBoard.show();
-  $rollDieDiv.show();
-});
+  $gameBoard.addClass('visible');
+  $rollDieDiv.addClass('visible');
+}
 
 
 
@@ -200,8 +182,11 @@ function computersChoice() {
 
 function rollDie(player) {
   dieRollNumber = Math.floor(Math.random() * 6) + 1;
-  console.log(`${player.title} ${dieRollNumber}`);
-  console.log(`${player.title} ${player.total}`);
+  if (player.title === 'player1') {
+    $player1GameLog.text(`${player.title} Rolled a ${dieRollNumber}`);
+  }
+  if (player.title === 'computer' )
+  $computerGameLog.text(`${player.title} Rolled a ${dieRollNumber}`);
 }
 
 // have coal property on each object
@@ -213,15 +198,11 @@ $rollDieButton.on('click', ()=> {
   $rollDieButton.prop( 'disabled', true );
   switch (turn) {
     case 'player1':
-    processTurn(player1);
-    if (gameMode === 'singlePlayer')
-    setTimeout(function(){
-      processTurn(computer);
-    },1000);
-    break;
-    case 'player2':
-    processTurn(player2);
-    break;
+      processTurn(player1);
+      setTimeout(function(){
+        processTurn(computer);
+      },1000);
+      break;
   }
 
   setTimeout(function(){
@@ -248,19 +229,6 @@ function processTurn(player) {
   }
 }
 
-// create function in processturn that changes the turn variable to the appropriate players turn
-
-// function changeTurn() {
-//   if (turn === 'player1' && gameMode === 'singlePlayer') {
-//
-//   } else if (turn === 'computer' && gameMode === 'singlePlayer') {
-//     turn = 'singlePlayer';
-//   }
-// }
-
-// then computer can have its own switch code block on rollediebutton
-
-// have the check for coals and for presents function in processturn, BEFORE the changeturn function
 
 function addPlayerTotal(player) {
   player.total += dieRollNumber;
@@ -268,11 +236,11 @@ function addPlayerTotal(player) {
 
 
 // place player on board
-function placePlayer(player) {
-  $(`.${player.character}`).removeClass(`${player.character}`);
-  $playerSquare = $(`[data-id="${player.total}"]`);
-  $playerSquare.addClass(`${player.character}`);
+function placePlayer(player) {    $(`.${player.character}`).removeClass(`${player.character}`);
+$playerSquare = $(`[data-id="${player.total}"]`);
+$playerSquare.addClass(`${player.character}`);
 }
+
 // change player.title to player.character inorder to display the correct image
 
 
@@ -281,52 +249,57 @@ function gameStatus(player) {
   if (player.total >= 100) {
     gameOver = true;
     alert(`${player.displayName} wins!`);
+
     // } else if (player.total > 100) {
     //   player.total - dieRollNumber;
     //   const winningNumber = player.total - 100;
-    //   console.log(`${player.title} rolled a ${dieRollNumber} but needs a ${winningNumber} to win`);
-    // }
-  }}
 
-  // functions that Check the square type player lands on
+    //   console.log(`${player.title} rolled a ${dieRollNumber} but needs a ${winningNumber} towin`);
 
-  function checkForChimneys(player) {
-    for (let i = 0; i < chimneys.length; i++) {
-      if (chimneys[i].position === player.total) {
-        player.total = chimneys[i].targetPosition;
-        placePlayer(player);
-        console.log(`${player.displayName} went down the chimney`);
-      }
+  }
+}
+
+
+
+// functions that Check the square type player lands on
+
+function checkForChimneys(player) {
+  for (let i = 0; i < chimneys.length; i++) {
+    if (chimneys[i].position === player.total) {
+      player.total = chimneys[i].targetPosition;
+      placePlayer(player);
+      console.log(`${player.displayName} went down the chimney`);
     }
   }
+}
 
 
-  function checkForCandyCanes(player) {
-    for (let i = 0; i < candyCanes.length; i++) {
-      if (candyCanes[i].position === player.total) {
-        player.total = candyCanes[i].targetPosition;
-        placePlayer(player);
-        console.log(`${player.displayName} went up the candyCane`);
-      }
+function checkForCandyCanes(player) {
+  for (let i = 0; i < candyCanes.length; i++) {
+    if (candyCanes[i].position === player.total) {
+      player.total = candyCanes[i].targetPosition;
+      placePlayer(player);
+      console.log(`${player.displayName} went up the candyCane`);
     }
   }
+}
 
-  function checkForPresents(player) {
-    for (let i = 0; i < presents.length; i++) {
-      if (presents[i].position === player.total) {
-        // player.present = true;
-        console.log(`${player.title} has been gifted another go, merry christmas!`);
-      }
+function checkForPresents(player) {
+  for (let i = 0; i < presents.length; i++) {
+    if (presents[i].position === player.total) {
+      // player.present = true;
+      console.log(`${player.title} has been gifted another go, merry christmas!`);
     }
   }
+}
 
 
-  function addCoal(player) {
-    for (let i = 0; i < coals.length; i++) {
-      if (coals[i].position === player.total) {
-        player.coal = true;
-        console.log(`${player.title} has been naughty this year and must miss their go`);
-        console.log(`player.coals: ${player.coal}`);
-      }
+function addCoal(player) {
+  for (let i = 0; i < coals.length; i++) {
+    if (coals[i].position === player.total) {
+      player.coal = true;
+      console.log(`${player.title} has been naughty this year and must miss their go`);
+      console.log(`player.coals: ${player.coal}`);
     }
   }
+}

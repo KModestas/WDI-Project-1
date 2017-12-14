@@ -3,7 +3,7 @@
 }
 
 body {
-  /*background: url("./Downloads/ws_Ice_Firs_1440x900.jpg");*/
+  background: url("../ws_Ice_Firs_1440x900.jpg");
   background-size: cover;
   font-family: 'Rubik', sans-serif;
 }
@@ -12,12 +12,13 @@ button, input {
   font-family: 'Rubik', sans-serif;
 }
 
-main {
-  /*display: flex;*/
-  border: 1px solid black;
-  /*flex-wrap: wrap;*/
-  width: 750px;
-  height: 750px;
+.game-board {
+  display: flex;
+    border: 1px solid black;
+    flex-wrap: wrap;
+    width: 600px;
+    height: 450px;
+    margin: 0 auto;
 }
 
 div {
@@ -26,14 +27,19 @@ div {
 
 h1 {
   display: block;
-  margin: 0 auto;
-  width: 500px;
+  text-align: center;
   font-size: 30px;
-  padding: 50px;
+  padding-top: 20px;
+
+}
+
+p {
+ text-align: center;
+ padding: 20px;
 }
 /*menu div styles*/
 
-.main-menu {
+/*.main-menu {
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
@@ -44,18 +50,14 @@ h1 {
   height: 350px;
   margin: 0 auto;
   margin-top: auto;
-}
+}*/
 
-.main-menu h2 {
-
-}
 
 
 .character-select-menu {
-  display: none;
-  flex-grow: 1;
+  display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
   width: 20%;
@@ -65,29 +67,42 @@ h1 {
   text-align: center;
 }
 
-.character-select-menu.visible{
-  display: flex;
+.characterButton {
+  display: block;
 }
+
+
 /*divs where game is played*/
 
  .roll-die-div {
+   display: none;
+   width: 500px;
+   margin: 40px auto;
+   justify-content: space-around;
+   align-items: center;
 
 }
 
 .game-board {
+ display: none;
 }
 
+.game-board div {
+  width: 10%;
+  height: 10%;
+  margin: 0 auto;
+}
 
 
 /*divs display toggles by JS*/
 
-.show {
+/*.show {
   display: block;
-}
+}*/
 
-.hide {
+/*.hide {
   display: none;
-}
+}*/
 
 /*special square type styles*/
 
@@ -113,13 +128,20 @@ h1 {
 /*player character images*/
 
 .santa {
-  background-color: pink;
+  /*background: url('https://vectortoons.com/wp-content/uploads/2015/11/santa-emoji-collection-3-001.jpg');*/
+  background: pink;
+
 }
 
 .elf {
-  background-color: green;
+  /*background: url('https://i.pinimg.com/564x/b7/21/a0/b721a04ff6311d228a16e9fedd00653d.jpg');*/
+  background: green;
 }
 
 .computer{
   background-color: orange;
+}
+
+.visible {
+  display: flex;
 }
