@@ -13,16 +13,18 @@ button, input {
 }
 
 .game-board {
-  display: flex;
+    display: flex;
     border: 1px solid black;
     flex-wrap: wrap;
     width: 500px;
     height: 450px;
     margin: 0 auto;
+    position: relative;
 }
 
 div {
   border: 1px solid black;
+  opacity: 0.6;
 }
 
 h1 {
@@ -35,12 +37,10 @@ h1 {
 
 .player1GameLog {
  text-align: center;
- padding: 10px;
 }
 
 .computerGameLog {
  text-align: center;
- padding: 10px;
 }
 
 
@@ -68,14 +68,14 @@ h1 {
  .roll-die-div {
    display: none;
    width: 500px;
-   margin: 30px auto;
+   margin: 10px auto;
    justify-content: space-around;
    align-items: center;
-
 }
 
 .game-board {
  display: none;
+
 }
 
 .game-board div {
@@ -90,6 +90,94 @@ h1 {
   background: red;
 }
 
+.candy-cane-img {
+  width: 40px;
+  height: 280px;
+  position: absolute;
+  transform: rotate(-60deg);
+  left: 290px;
+  z-index: 2;
+  opacity: 0.7;
+
+}
+
+.candy-cane-img2 {
+  left: 110px;
+  transform: rotate(-20deg);
+  height: 140px;
+}
+
+.candy-cane-img3 {
+  top: 260px;
+  left: 125px;
+  transform: rotate(15deg);
+  width: 50px;
+  height: 200px;
+}
+
+.candy-cane-img4 {
+  left: 55px;
+  transform: rotate(30deg);
+  height: 200px;
+  top: 130px;
+
+}
+
+.candy-cane-img5 {
+  bottom: 55px;
+  transform: rotate(0deg);
+  left: 400px;
+}
+
+
+.chimney-img {
+  position: absolute;
+  width: 40px;
+  height: 250px;
+  left: 150px;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.chimney-img2 {
+  position: absolute;
+  transform: rotate(30deg);
+  width: 40px;
+  height: 180px;
+  left: 300px;
+}
+
+
+.chimney-img3 {
+  position: absolute;
+  width: 40px;
+  height: 180px;
+  left: 450px;
+  top: 50px;
+}
+
+.chimney-img4 {
+  position: absolute;
+  transform: rotate(-30deg);
+  width: 40px;
+  height: 130px;
+  left: 35px;
+  top: 180px;
+}
+
+.chimney-img5 {
+  position: absolute;
+  width: 40px;
+  height: 230px;
+  left: 300px;
+  top: 200px;
+}
+
+
+
+.gameBoard div  {
+  z-index: 2;
+}
 
 .chimney {
   background: brown;
@@ -101,7 +189,7 @@ h1 {
 }
 
 .coal {
-  background: grey;
+  background: url("https://s-media-cache-ak0.pinimg.com/originals/34/9b/9a/349b9a0a1dff61ed8218b818f8628a0a.jpg");
 }
 
 
@@ -119,7 +207,7 @@ div.santa {
 div.elf {
   background: url('https://i.pinimg.com/564x/b7/21/a0/b721a04ff6311d228a16e9fedd00653d.jpg');
     background-size: contain;
-  /*background: green;*/
+    background-repeat: no-repeat;
 }
 
 .red {
@@ -132,7 +220,7 @@ div.elf {
 
 .logs {
   border: none;
-  height: 120px;
+  height: 100px;
 }
 
 .rollDie {
@@ -149,9 +237,6 @@ div.elf {
   height: 55px;
 }
 
-.roll-die-div h2 {
-  color: white;
-}
 
 .visible {
   display: flex;
@@ -160,6 +245,7 @@ div.elf {
 .characterButton img {
   width: 65px;
   height: 55px;
+  background-repeat: no-repeat;
 }
 
 .characterButton{
@@ -169,6 +255,9 @@ div.elf {
   font-weight: bold;
   background: url('images/santa-image.webp');
   background-size: contain;
-  
+  background-repeat: no-repeat;
+}
 
+.elf-button {
+  background: url('images/elf-image.jpg');
 }

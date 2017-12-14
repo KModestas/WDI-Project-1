@@ -78,11 +78,11 @@ const chimneys = [
 
 const candyCanes = [
   { position: 52,
-    targetPosition: 85
+    targetPosition: 85 //done
   },
   {
-    position: 38,
-    targetPosition: 77
+    position: 78,
+    targetPosition: 98 
   },
   {
     position: 25,
@@ -186,7 +186,9 @@ function loadGame() {
 function rollDie(player) {
   dieRollNumber = Math.floor(Math.random() * 6) + 1;
   if (player.title === 'player1') {
-    $player1GameLog.text(`${player.displayName} rolled a ${dieRollNumber}`).fadeIn();
+    $player1GameLog.hide();
+    $player1GameLog.text(`${player.displayName} rolled a ${dieRollNumber}`);
+    $player1GameLog.fadeIn();
   }
   if (player.title === 'computer' )
     $computerGameLog.text(`${player.displayName} rolled a ${dieRollNumber}`).fadeIn();
@@ -244,14 +246,18 @@ function placePlayer(player) {
   $(`.${player.character}`).removeClass(player.character);
   $playerSquare = $(`[data-id="${player.total}"]`);
   $playerSquare.addClass(`${player.character}`);
+
 }
 
 function gameStatus(player) {
-  if (player.total >= 100) {
+  if (player.total === 100) {
     gameOver = true;
-    alert(`${player.displayName} wins!`);
+    alert(`${player.displayName} wins!`)
+  } else if (player.total > 100) {
+    player.total - roll
   }
 }
+
 
 
 
