@@ -45,64 +45,48 @@ const characters = ['santa', 'elf'];
 
 const chimneys = [
   {
-    position: 45,
-    targetPosition: 17
+    position: 93,
+    targetPosition: 66
   },
   {
-    position: 53,
-    targetPosition: 32
+    position: 90,
+    targetPosition: 51
   },
   {
-    position: 72,
-    targetPosition: 15
+    position: 54,
+    targetPosition: 7
   },
   {
-    position: 79,
-    targetPosition: 61
+    position: 97,
+    targetPosition: 44
   },
   {
-    position: 94,
-    targetPosition: 74
-  },
-  {
-    position: 98,
-    targetPosition: 65
-  },
-  {
-    position: 86,
-    targetPosition: 67
+    position: 60,
+    targetPosition: 39
   }
 ];
 
 // candycanes array
 
 const candyCanes = [
-  { position: 52,
-    targetPosition: 85 //done
+  { position: 78,
+    targetPosition: 98 //done
   },
   {
-    position: 78,
-    targetPosition: 98 
-  },
-  {
-    position: 25,
-    targetPosition: 73
-  },
-  {
-    position: 28,
-    targetPosition: 59
-  },
-  {
-    position: 75,
+    position: 52,
     targetPosition: 85
   },
   {
-    position: 2,
-    targetPosition: 19
+    position: 12,
+    targetPosition: 69
   },
   {
-    position: 9,
-    targetPosition: 31
+    position: 3,
+    targetPosition: 37
+  },
+  {
+    position: 40,
+    targetPosition: 63
   }
 ];
 
@@ -135,11 +119,11 @@ $characterButton.on('click', function(e){
 function characterColor() {
   if (player1.character === 'santa') {
     $player1GameLog.addClass('red');
-  } else $player1GameLog.addClass('green');
+  } else $player1GameLog.addClass('white');
 
   if (computer.character === 'santa') {
     $computerGameLog.addClass('red');
-  } else $computerGameLog.addClass('green');
+  } else $computerGameLog.addClass('white');
 }
 
 
