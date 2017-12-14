@@ -55,7 +55,11 @@ p {
 
 
 .character-select-menu {
+<<<<<<< HEAD
   display: flex;
+=======
+  display: none;
+>>>>>>> 5fbe934f013c120b138d9ada65e53f144cccf450
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
@@ -78,6 +82,10 @@ p {
    display: none;
    width: 500px;
    margin: 40px auto;
+<<<<<<< HEAD
+=======
+   /*flex-direction: column;*/
+>>>>>>> 5fbe934f013c120b138d9ada65e53f144cccf450
    justify-content: space-around;
    align-items: center;
 

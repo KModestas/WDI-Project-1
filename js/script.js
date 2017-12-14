@@ -6,12 +6,21 @@ let computerSelectTurn = null;
 let dieRollNumber = null;
 let turn = 'player1';
 let removedCharacter;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5fbe934f013c120b138d9ada65e53f144cccf450
 let $playerSquare = null;
 
 // all elements grabbed from DOM
 const $rollDieButton = $('.rollDie');
 const $characterButton = $('.characterButton');
 const $characterMenu = $('.character-select-menu');
+<<<<<<< HEAD
+=======
+// const $goBack = $('.go-back');
+// const $playButton = $('.play');
+>>>>>>> 5fbe934f013c120b138d9ada65e53f144cccf450
 const $gameBoard = $('.game-board');
 const $rollDieDiv = $('.roll-die-div');
 const $player1GameLog = $('.player1GameLog');
@@ -160,13 +169,27 @@ function setPlayer1Property(e) {
 
 function computersChoice(e) {
   if (computerSelectTurn) {
-    computer.character = characters[0];
-  }
-}
+  computer.character = characters[0];
+}}
 
+
+<<<<<<< HEAD
 
 
 function loadGame() {
+=======
+// $goBack.on('click', function(){
+//   $mainMenu.show();
+//   $characterMenu.removeClass('visible');
+//   characters[1] = removedCharacter;
+//   console.log(characters);
+//
+// });
+
+
+
+  function loadGame() {
+>>>>>>> 5fbe934f013c120b138d9ada65e53f144cccf450
   $characterMenu.hide();
   $gameBoard.addClass('visible');
   $rollDieDiv.addClass('visible');
