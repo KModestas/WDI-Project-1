@@ -134,12 +134,12 @@ $characterButton.on('click', function(e){
 
 function characterColor() {
   if (player1.character === 'santa') {
-    $player1GameLog.addClass('.red');
-  } else $player1GameLog.addClass('.green');
+    $player1GameLog.addClass('red');
+  } else $player1GameLog.addClass('green');
 
   if (computer.character === 'santa') {
-    $computerGameLog.addClass('.red');
-  } else $computerGameLog.addClass('.green');
+    $computerGameLog.addClass('red');
+  } else $computerGameLog.addClass('green');
 }
 
 
@@ -162,9 +162,11 @@ function setPlayer1Property(e) {
 
 }
 
-function computersChoice(e) {
+function computersChoice() {
   if (computerSelectTurn) {
-    computer.character = characters[0];}
+    computer.character = characters[0];
+
+  }
 }
 
 function loadGame() {
@@ -199,6 +201,7 @@ $rollDieButton.on('click', ()=> {
   $rollDieButton.prop( 'disabled', true );
   switch (turn) {
     case 'player1':
+    console.log(player1);
       processTurn(player1);
       setTimeout(function(){
         processTurn(computer);
@@ -236,9 +239,11 @@ function addPlayerTotal(player) {
 
 
 // place player on board
-function placePlayer(player) {    $(`.${player.character}`).removeClass(`${player.character}`);
-$playerSquare = $(`[data-id="${player.total}"]`);
-$playerSquare.addClass(`${player.character}`);
+function placePlayer(player) {
+  console.log(player.character);
+  $(`.${player.character}`).removeClass(player.character);
+  $playerSquare = $(`[data-id="${player.total}"]`);
+  $playerSquare.addClass(`${player.character}`);
 }
 
 function gameStatus(player) {
@@ -260,12 +265,12 @@ function checkForChimneys(player) {
       if (player.title === 'player1') {
         $player1GameLog.text(`${player.displayName} went down the chimney!`);
       }
-      if (player.title === 'computer' )
-      $computerGameLog.text(`${player.displayName} went down the chimney!`);
-    }
+      if (player.title === 'computer' ) {
+        $computerGameLog.text(`${player.displayName} went down the chimney!`);
+      }
     }
   }
-
+}
 
 
 function checkForCandyCanes(player) {
@@ -277,10 +282,10 @@ function checkForCandyCanes(player) {
         $player1GameLog.text(`${player.displayName} went up the candy Cane!`);
       }
       if (player.title === 'computer' )
-      $computerGameLog.text(`${player.displayName} went up the candy Cane!`);
-   }
-}
+        $computerGameLog.text(`${player.displayName} went up the candy Cane!`);
+    }
   }
+}
 
 
 function checkForPresents(player) {
@@ -301,7 +306,7 @@ function addCoal(player) {
         $player1GameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
       }
       if (player.title === 'computer' )
-      $computerGameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
-    }
+        $computerGameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
     }
   }
+}

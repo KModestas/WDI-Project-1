@@ -96,6 +96,7 @@ h1 {
   width: 10%;
   height: 10%;
   margin: 0 auto;
+  background-color: #fff;
 }
 
 
@@ -132,7 +133,7 @@ h1 {
 
 /*player character images*/
 
-.santa {
+div.santa {
   background: url('https://vectortoons.com/wp-content/uploads/2015/11/santa-emoji-collection-3-001.jpg');
   background-size: contain;
   background-repeat: no-repeat;
@@ -141,7 +142,7 @@ h1 {
 
 }
 
-.elf {
+div.elf {
   background: url('https://i.pinimg.com/564x/b7/21/a0/b721a04ff6311d228a16e9fedd00653d.jpg');
     background-size: contain;
   /*background: green;*/
@@ -160,7 +161,36 @@ h1 {
   height: 120px;
 }
 
+.rollDie {
+  width: 50px;
+  height: 50px;
+}
+
+.rollDie:hover {
+  border: 2px solid orange;
+}
+
+.rollDie:active {
+  width: 55px;
+  height: 55px;
+}
+
+.roll-die-div h2 {
+  color: white;
+}
 
 .visible {
   display: flex;
+}
+
+.characterButton img {
+  width: 65px;
+  height: 55px;
+}
+
+.characterButton {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: white;
+
 }
