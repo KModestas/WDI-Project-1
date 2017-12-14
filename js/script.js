@@ -123,22 +123,25 @@ const coals = [
 ];
 
 
-// singplayer game mode functionality
-
-// $singlePlayerButton.on('click', function(){
-//   computerSelectTurn = false;
-//   console.log(gameMode);
-//   console.log(computerSelectTurn);
-//   $mainMenu.hide();
-//   $characterMenu.addClass('visible');
-//
-// });
-
 $characterButton.on('click', function(e){
   setPlayer1Property(e);
   computersChoice(e);
+  characterColor();
   loadGame();
+
 });
+
+
+function characterColor() {
+  if (player1.character === 'santa') {
+    $player1GameLog.addClass('.red');
+  } else $player1GameLog.addClass('.green');
+
+  if (computer.character === 'santa') {
+    $computerGameLog.addClass('.red');
+  } else $computerGameLog.addClass('.green');
+}
+
 
 
 
@@ -161,8 +164,8 @@ function setPlayer1Property(e) {
 
 function computersChoice(e) {
   if (computerSelectTurn) {
-  computer.character = characters[0];
-}}
+    computer.character = characters[0];}
+}
 
 function loadGame() {
   $characterMenu.hide();
@@ -181,10 +184,10 @@ function loadGame() {
 function rollDie(player) {
   dieRollNumber = Math.floor(Math.random() * 6) + 1;
   if (player.title === 'player1') {
-    $player1GameLog.text(`${player.title} Rolled a ${dieRollNumber}`);
+    $player1GameLog.text(`${player.displayName} rolled a ${dieRollNumber}`).fadeIn();
   }
   if (player.title === 'computer' )
-  $computerGameLog.text(`${player.title} Rolled a ${dieRollNumber}`);
+    $computerGameLog.text(`${player.displayName} rolled a ${dieRollNumber}`).fadeIn();
 }
 
 // have coal property on each object
@@ -214,19 +217,18 @@ function processTurn(player) {
   // should check for player.coal to be true.
   if (player.coal) {
     player.coal = false;
-    console.log(`${player.title} has missed their go`);
+    console.log(`${player.displayName} has missed their go`);
   } else if (!player.coal) {
     console.log(`${player.title} turn`);
     rollDie(player);
     addPlayerTotal(player); // refactored
     placePlayer(player); // refactored
-    addCoal(player); // add coal if the player total is the same as a coal square
+    addCoal(player);
     checkForChimneys(player); // refactored
     checkForCandyCanes(player); // refactored
     gameStatus(player); // refactored
   }
 }
-
 
 function addPlayerTotal(player) {
   player.total += dieRollNumber;
@@ -239,21 +241,10 @@ $playerSquare = $(`[data-id="${player.total}"]`);
 $playerSquare.addClass(`${player.character}`);
 }
 
-// change player.title to player.character inorder to display the correct image
-
-
-
 function gameStatus(player) {
   if (player.total >= 100) {
     gameOver = true;
     alert(`${player.displayName} wins!`);
-
-    // } else if (player.total > 100) {
-    //   player.total - dieRollNumber;
-    //   const winningNumber = player.total - 100;
-
-    //   console.log(`${player.title} rolled a ${dieRollNumber} but needs a ${winningNumber} towin`);
-
   }
 }
 
@@ -266,10 +257,15 @@ function checkForChimneys(player) {
     if (chimneys[i].position === player.total) {
       player.total = chimneys[i].targetPosition;
       placePlayer(player);
-      console.log(`${player.displayName} went down the chimney`);
+      if (player.title === 'player1') {
+        $player1GameLog.text(`${player.displayName} went down the chimney!`);
+      }
+      if (player.title === 'computer' )
+      $computerGameLog.text(`${player.displayName} went down the chimney!`);
+    }
     }
   }
-}
+
 
 
 function checkForCandyCanes(player) {
@@ -277,10 +273,15 @@ function checkForCandyCanes(player) {
     if (candyCanes[i].position === player.total) {
       player.total = candyCanes[i].targetPosition;
       placePlayer(player);
-      console.log(`${player.displayName} went up the candyCane`);
-    }
-  }
+      if (player.title === 'player1') {
+        $player1GameLog.text(`${player.displayName} went up the candy Cane!`);
+      }
+      if (player.title === 'computer' )
+      $computerGameLog.text(`${player.displayName} went up the candy Cane!`);
+   }
 }
+  }
+
 
 function checkForPresents(player) {
   for (let i = 0; i < presents.length; i++) {
@@ -296,8 +297,11 @@ function addCoal(player) {
   for (let i = 0; i < coals.length; i++) {
     if (coals[i].position === player.total) {
       player.coal = true;
-      console.log(`${player.title} has been naughty this year and must miss their go`);
-      console.log(`player.coals: ${player.coal}`);
+      if (player.title === 'player1') {
+        $player1GameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
+      }
+      if (player.title === 'computer' )
+      $computerGameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
+    }
     }
   }
-}
