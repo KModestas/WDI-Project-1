@@ -6,6 +6,7 @@ let computerSelectTurn = null;
 let dieRollNumber = null;
 let turn = 'player1';
 let removedCharacter;
+
 let $playerSquare = null;
 
 // all elements grabbed from DOM
@@ -160,11 +161,8 @@ function setPlayer1Property(e) {
 
 function computersChoice(e) {
   if (computerSelectTurn) {
-    computer.character = characters[0];
-  }
-}
-
-
+  computer.character = characters[0];
+}}
 
 function loadGame() {
   $characterMenu.hide();
