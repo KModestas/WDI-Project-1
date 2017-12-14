@@ -16,7 +16,7 @@ button, input {
   display: flex;
     border: 1px solid black;
     flex-wrap: wrap;
-    width: 600px;
+    width: 500px;
     height: 450px;
     margin: 0 auto;
 }
@@ -42,20 +42,6 @@ h1 {
  text-align: center;
  padding: 10px;
 }
-/*menu div styles*/
-
-/*.main-menu {
-  display: flex;
-  flex-grow: 1;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 20%;
-  height: 350px;
-  margin: 0 auto;
-  margin-top: auto;
-}*/
 
 
 
@@ -82,7 +68,7 @@ h1 {
  .roll-die-div {
    display: none;
    width: 500px;
-   margin: 40px auto;
+   margin: 30px auto;
    justify-content: space-around;
    align-items: center;
 
@@ -99,18 +85,6 @@ h1 {
   background-color: #fff;
 }
 
-
-/*divs display toggles by JS*/
-
-/*.show {
-  display: block;
-}*/
-
-/*.hide {
-  display: none;
-}*/
-
-/*special square type styles*/
 
 .candy-cane {
   background: red;
@@ -188,9 +162,13 @@ div.elf {
   height: 55px;
 }
 
-.characterButton {
+.characterButton{
+  height: 100px;
+  width: 60px;
   font-size: 20px;
   font-weight: bold;
-  background-color: white;
+  background: url('images/santa-image.webp');
+  background-size: contain;
+  
 
 }
