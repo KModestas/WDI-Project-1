@@ -127,18 +127,22 @@ $characterButton.on('click', function(e){
 function characterColor() {
   if (player1.character === 'santa') {
     $player1GameLog.addClass('red');
-  } else $player1GameLog.addClass('white');
+  } else{
+    $player1GameLog.addClass('white');
+  }
 
   if (computer.character === 'santa') {
     $computerGameLog.addClass('red');
-  } else $computerGameLog.addClass('white');
+  } else {
+    $computerGameLog.addClass('white');
+  }
 }
 
 
 
 
 function setPlayer1Property(e) {
-  let player1CharacterProperty = e.target.innerText;
+  let player1CharacterProperty = (e.target).innerText;
   player1CharacterProperty = player1CharacterProperty.toLowerCase();
   player1.character = player1CharacterProperty;
 
@@ -183,10 +187,10 @@ function rollDie(player) {
     $player1GameLog.fadeIn();
   }
   if (player.title === 'computer' ) {
-  $computerGameLog.hide();
-  $computerGameLog.text(`${player.displayName} rolled a ${dieRollNumber}`)
-  $computerGameLog.fadeIn();
-}
+    $computerGameLog.hide();
+    $computerGameLog.text(`${player.displayName} rolled a ${dieRollNumber}`)
+    $computerGameLog.fadeIn();
+  }
 }
 
 // have coal property on each object
