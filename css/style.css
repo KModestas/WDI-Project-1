@@ -211,7 +211,9 @@ div.santa {
   background-position: center;
   z-index: 3;
   opacity: 0.9;
+}
 
+div.santa:hover {
 
 }
 

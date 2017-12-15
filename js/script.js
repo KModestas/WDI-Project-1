@@ -182,8 +182,11 @@ function rollDie(player) {
     $player1GameLog.text(`${player.displayName} rolled a ${dieRollNumber}`);
     $player1GameLog.fadeIn();
   }
-  if (player.title === 'computer' )
-  $computerGameLog.text(`${player.displayName} rolled a ${dieRollNumber}`).fadeIn();
+  if (player.title === 'computer' ) {
+  $computerGameLog.hide();
+  $computerGameLog.text(`${player.displayName} rolled a ${dieRollNumber}`)
+  $computerGameLog.fadeIn();
+}
 }
 
 // have coal property on each object
