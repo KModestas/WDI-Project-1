@@ -213,9 +213,7 @@ div.santa {
   opacity: 0.9;
 }
 
-div.santa:hover {
 
-}
 
 div.elf {
     background: url('images/elf-image.jpg');
@@ -280,6 +278,11 @@ div.elf {
   background-repeat: no-repeat;
   padding-top: 70px;
 
+}
+
+.characterButton:hover {
+  color: orange;
+  border: 2px solid orange;
 }
 
 .elf-button {
