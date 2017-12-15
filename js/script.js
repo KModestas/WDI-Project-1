@@ -1,7 +1,6 @@
 
 
 let gameOver = false;
-let gameMode = null;
 let computerSelectTurn = null;
 let dieRollNumber = null;
 let turn = 'player1';
@@ -107,6 +106,15 @@ const coals = [
 ];
 
 
+function playSound() {
+  const audio = $('audio').get(0);
+  $(audio).attr('src','./sounds/song.mp3');
+  audio.play();
+}
+
+playSound();
+
+
 $characterButton.on('click', function(e){
   setPlayer1Property(e);
   computersChoice(e);
@@ -175,7 +183,7 @@ function rollDie(player) {
     $player1GameLog.fadeIn();
   }
   if (player.title === 'computer' )
-    $computerGameLog.text(`${player.displayName} rolled a ${dieRollNumber}`).fadeIn();
+  $computerGameLog.text(`${player.displayName} rolled a ${dieRollNumber}`).fadeIn();
 }
 
 // have coal property on each object
@@ -188,11 +196,13 @@ $rollDieButton.on('click', ()=> {
   switch (turn) {
     case 'player1':
     console.log(player1);
+    setTimeout(function(){
       processTurn(player1);
-      setTimeout(function(){
-        processTurn(computer);
-      },1000);
-      break;
+    },250);
+    setTimeout(function(){
+      processTurn(computer);
+    },1000);
+    break;
   }
 
   setTimeout(function(){
@@ -204,18 +214,20 @@ $rollDieButton.on('click', ()=> {
 
 function processTurn(player) {
   // should check for player.coal to be true.
-  if (player.coal) {
-    player.coal = false;
-    console.log(`${player.displayName} has missed their go`);
-  } else if (!player.coal) {
-    console.log(`${player.title} turn`);
-    rollDie(player);
-    addPlayerTotal(player); // refactored
-    placePlayer(player); // refactored
-    addCoal(player);
-    checkForChimneys(player); // refactored
-    checkForCandyCanes(player); // refactored
-    gameStatus(player); // refactored
+  if (gameOver === false) {
+    if (player.coal) {
+      player.coal = false;
+      console.log(`${player.displayName} has missed their go`);
+    } else if (!player.coal) {
+      console.log(`${player.title} turn`);
+      rollDie(player);
+      addPlayerTotal(player); // refactored
+      placePlayer(player); // refactored
+      addCoal(player);
+      checkForChimneys(player); // refactored
+      checkForCandyCanes(player); // refactored
+      gameStatus(player); // refactored
+    }
   }
 }
 
@@ -236,7 +248,16 @@ function placePlayer(player) {
 function gameStatus(player) {
   if (player.total >= 100) {
     gameOver = true;
-    alert(`${player.displayName} wins!`)
+    $rollDieButton.off('click');
+    alert(`${player.displayName} wins!`);
+
+    $player1GameLog.remove();
+    $computerGameLog.remove();
+
+    setTimeout(function(){
+      window.location.reload();
+    }, 500);
+
   }
 }
 
@@ -270,7 +291,7 @@ function checkForCandyCanes(player) {
         $player1GameLog.text(`${player.displayName} went up the candy Cane!`);
       }
       if (player.title === 'computer' )
-        $computerGameLog.text(`${player.displayName} went up the candy Cane!`);
+      $computerGameLog.text(`${player.displayName} went up the candy Cane!`);
     }
   }
 }
@@ -294,7 +315,7 @@ function addCoal(player) {
         $player1GameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
       }
       if (player.title === 'computer' )
-        $computerGameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
+      $computerGameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
     }
   }
 }
