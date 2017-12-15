@@ -237,12 +237,13 @@ div.elf {
 }
 
 .rollDie:hover {
-  border: 2px solid orange;
+  border: 2px solid red;
 }
 
 .rollDie:active {
   width: 85px;
   height: 55px;
+  background: green;
 }
 
 

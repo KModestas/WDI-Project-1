@@ -234,11 +234,9 @@ function placePlayer(player) {
 }
 
 function gameStatus(player) {
-  if (player.total === 100) {
+  if (player.total >= 100) {
     gameOver = true;
     alert(`${player.displayName} wins!`)
-  } else if (player.total > 100) {
-    player.total - roll
   }
 }
 
