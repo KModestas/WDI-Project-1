@@ -8,33 +8,36 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" charset="utf-8"></script>
 </head>
 <body>
+
   <h1>Chimneys & Candy Canes</h1>
 
+  <!-- displays events of game at the top of screen -->
   <div class="logs">
     <p class="player1GameLog"> </p>
     <p class="computerGameLog"> </p>
   </div>
 
-
+  <!-- character select screen (first thing user sees)-->
   <div class="character-select-menu hide">
     <h2>Select Your Character</h2>
-     <button class="characterButton">Santa</button>
-     <button class="characterButton elf-button">Elf</button>
+    <button class="characterButton">Santa</button>
+    <button class="characterButton elf-button">Elf</button>
   </div>
 
+  <!-- gameboard consisiting of images and 100 squares -->
   <main class="game-board hide">
     <img src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png" class="candy-cane-img">
-      <img src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png" class="candy-cane-img candy-cane-img2">
-        <img src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png" class="candy-cane-img candy-cane-img3">
-        <img src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png" class="candy-cane-img candy-cane-img4">
-        <img src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png" class="candy-cane-img candy-cane-img5">
-        <img>
+    <img src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png" class="candy-cane-img candy-cane-img2">
+    <img src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png" class="candy-cane-img candy-cane-img3">
+    <img src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png" class="candy-cane-img candy-cane-img4">
+    <img src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png" class="candy-cane-img candy-cane-img5">
+    <img>
 
-        <img class="chimney-img" src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png" >
-        <img class="chimney-img chimney-img2" src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png" >
-        <img class="chimney-img chimney-img3" src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png" >
-        <img class="chimney-img chimney-img4" src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png" >
-        <img class="chimney-img chimney-img5" src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png" >
+    <img class="chimney-img" src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png" >
+    <img class="chimney-img chimney-img2" src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png" >
+    <img class="chimney-img chimney-img3" src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png" >
+    <img class="chimney-img chimney-img4" src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png" >
+    <img class="chimney-img chimney-img5" src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png" >
 
 
     <div data-id="100">100
@@ -239,14 +242,16 @@
     </div>
   </main>
 
+
+   <!-- section at the bottom of screen where player rolls die -->
   <div class="roll-die-div hide">
     <h2>Roll The Die</h2>
     <img class="rollDie" src="http://weclipart.com/gimg/086115793A19A243/free-to-use-amp-public-domain-dice-clip-art.png">
   </div>
 
   <audio loop>
-  Your browser does not support the audio element.
-</audio>
+    Your browser does not support the audio element.
+  </audio>
 
   <script src="./js/script.js" type="text/javascript">
   </script>

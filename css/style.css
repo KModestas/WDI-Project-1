@@ -94,6 +94,7 @@ h1 {
   background: red;
 }
 
+/*square 52 + all other candycanes*/
 .candy-cane-img {
   width: 40px;
   height: 280px;
@@ -105,12 +106,14 @@ h1 {
 
 }
 
+/*square 78*/
 .candy-cane-img2 {
   left: 110px;
   transform: rotate(-20deg);
   height: 140px;
 }
 
+/*square 3*/
 .candy-cane-img3 {
   top: 260px;
   left: 125px;
@@ -119,30 +122,32 @@ h1 {
   height: 200px;
 }
 
+/*square 40*/
 .candy-cane-img4 {
   left: 55px;
   transform: rotate(30deg);
   height: 200px;
   top: 130px;
-
 }
 
+/*square 69*/
 .candy-cane-img5 {
   bottom: 55px;
+  height: 260px;
   transform: rotate(0deg);
-  left: 400px;
+  left: 410px;
 }
 
-
+/* square 97 + all other chimneys */
 .chimney-img {
   position: absolute;
   width: 40px;
   height: 250px;
   left: 150px;
-  opacity: 1;
   z-index: 1;
 }
 
+/*square 93*/
 .chimney-img2 {
   position: absolute;
   transform: rotate(30deg);
@@ -151,7 +156,7 @@ h1 {
   left: 300px;
 }
 
-
+/*square 90*/
 .chimney-img3 {
   position: absolute;
   width: 40px;
@@ -160,6 +165,7 @@ h1 {
   top: 50px;
 }
 
+/*square 60*/
 .chimney-img4 {
   position: absolute;
   transform: rotate(-30deg);
@@ -169,6 +175,7 @@ h1 {
   top: 180px;
 }
 
+/*square 54*/
 .chimney-img5 {
   position: absolute;
   width: 40px;
@@ -277,6 +284,7 @@ div.elf {
   background-size: contain;
   background-repeat: no-repeat;
   padding-top: 70px;
+  border: none;
 
 }
 
