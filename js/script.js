@@ -3,28 +3,27 @@
 let gameOver = false;
 let computerSelectTurn = null;
 let dieRollNumber = null;
-let turn = 'player1';
-let removedCharacter;
-
+let removedCharacter = null;
 let $playerSquare = null;
+const turn = 'player1';
 
 // all elements grabbed from DOM
-const $rollDieButton = $('.rollDie');
-const $characterButton = $('.characterButton');
+const $rollDieButton = $('.die');
+const $characterButton = $('.character-button');
 const $characterMenu = $('.character-select-menu');
 const $gameBoard = $('.game-board');
 const $rollDieDiv = $('.roll-die-div');
-const $player1GameLog = $('.player1GameLog');
-const $computerGameLog = $('.computerGameLog');
+const $player1GameLog = $('.player-1-game-log');
+const $computerGameLog = $('.computer-game-log');
 
 // player objects
 
 const player1 = {
   title: 'player1',
   displayName: 'Player 1', // refers to name you want to display on screen to user
-  total: 0,
-  character: null,
-  coal: false// this value must match up to the css class that displays the character image
+  total: 0, // total number from die rolls
+  character: null, // this value must match up to the css class that displays the character image
+  coal: false
 };
 
 
