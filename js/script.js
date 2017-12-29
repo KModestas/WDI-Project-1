@@ -1,11 +1,13 @@
 
-
 let gameOver = false;
+// allows computer to select their character
 let computerSelectTurn = null;
+// resulting number from rolling die is stored
 let dieRollNumber = null;
 let removedCharacter = null;
 let $playerSquare = null;
 const turn = 'player1';
+
 
 // all elements grabbed from DOM
 const $rollDieButton = $('.die');
@@ -16,8 +18,8 @@ const $rollDieDiv = $('.roll-die-div');
 const $player1GameLog = $('.player-1-game-log');
 const $computerGameLog = $('.computer-game-log');
 
-// player objects
 
+// player objects
 const player1 = {
   title: 'player1',
   displayName: 'Player 1', // refers to name you want to display on screen to user
@@ -35,12 +37,12 @@ const computer = {
   coal: false
 };
 
-// characters array
 
+// characters array stores class names of characters
 const characters = ['santa', 'elf'];
 
-// chimneys array
 
+// chimneys array
 const chimneys = [
   {
     position: 93,
@@ -64,11 +66,11 @@ const chimneys = [
   }
 ];
 
-// candycanes array
 
+// candycanes array
 const candyCanes = [
   { position: 78,
-    targetPosition: 98 //done
+    targetPosition: 98
   },
   {
     position: 52,
@@ -88,16 +90,16 @@ const candyCanes = [
   }
 ];
 
-// presents array
 
+// presents array
 const presents = [
   { position: 12 },
   { position: 56 },
   { position: 82 }
 ];
 
-// coals array
 
+// coals array
 const coals = [
   { position: 95 },
   { position: 13 },
@@ -105,21 +107,26 @@ const coals = [
 ];
 
 
+// plays in game music
 function playSound() {
   const audio = $('audio').get(0);
   $(audio).attr('src','./sounds/song.mp3');
   audio.play();
 }
 
+
 playSound();
 
 
 $characterButton.on('click', function(e){
+  // assigns the character the player clicks on
   setPlayer1Property(e);
+  // computer assigne character after player
   computersChoice(e);
+  // game log text color depending on character
   characterColor();
+  // loads gameboard
   loadGame();
-
 });
 
 
@@ -138,105 +145,91 @@ function characterColor() {
 }
 
 
-
-
 function setPlayer1Property(e) {
+  // sets player objects character to be the character they selected in menu
   let player1CharacterProperty = (e.target).innerText;
   player1CharacterProperty = player1CharacterProperty.toLowerCase();
   player1.character = player1CharacterProperty;
 
+  // removes players picked character from characers array so computer cant pick it
   for (let i = 0; i < characters.length; i++) {
     if (player1.character === characters[i]) {
-      removedCharacter = characters.splice(i, 1);
-      removedCharacter = removedCharacter.toString();
+      characters.splice(i, 1);
     }
   }
-
   computerSelectTurn = true;
-  console.log(computerSelectTurn);
-
 }
 
+
+// assigns the remaining character in characters array to computer after player has made selection
 function computersChoice() {
   if (computerSelectTurn) {
     computer.character = characters[0];
-
   }
 }
 
+
+// hides character select menu and loads gameboard and die div
 function loadGame() {
   $characterMenu.hide();
   $gameBoard.addClass('visible');
   $rollDieDiv.addClass('visible');
 }
 
-
-
-
-
-
-
-// rolls die and stores number in dieRollNumber
-
-function rollDie(player) {
-  dieRollNumber = Math.floor(Math.random() * 6) + 1;
-  if (player.title === 'player1') {
-    $player1GameLog.hide();
-    $player1GameLog.text(`${player.displayName} rolled a ${dieRollNumber}`);
-    $player1GameLog.fadeIn();
-  }
-  if (player.title === 'computer' ) {
-    $computerGameLog.hide();
-    $computerGameLog.text(`${player.displayName} rolled a ${dieRollNumber}`)
-    $computerGameLog.fadeIn();
-  }
-}
-
 // have coal property on each object
 // have if statement that checks if coal is true, if thats the case then dont process the turn and then change coal proerty to false;
 
-// player object is passed in as an argument in this function which then passes a reference to the player object to the processTurn function (the reference being player) which contains all of the other functions that process the object and gives them access to the player object and its properties.
 
+// player and computer object gets passed as arguments for process turn which gives all other function sin process turn access to the player/computer objects properties under the reference name/variable of "player"
 $rollDieButton.on('click', ()=> {
-  $rollDieButton.prop( 'disabled', true );
-  switch (turn) {
-    case 'player1':
-    console.log(player1);
-    setTimeout(function(){
-      processTurn(player1);
-    },250);
-    setTimeout(function(){
-      processTurn(computer);
-    },1000);
-    break;
-  }
+  $rollDieButton.prop('disabled', true );
+
+  setTimeout(function(){
+    processTurn(player1);
+  },250);
+  setTimeout(function(){
+    processTurn(computer);
+  },1000);
 
   setTimeout(function(){
     $rollDieButton.prop( 'disabled', false );
   },1000);
-
-
 });
 
 function processTurn(player) {
-  // should check for player.coal to be true.
+  // should check for player.coal to be true
   if (gameOver === false) {
+    // if player has coal, coal is set to false and players turn is not processed this go.
     if (player.coal) {
       player.coal = false;
-      console.log(`${player.displayName} has missed their go`);
     } else if (!player.coal) {
-      console.log(`${player.title} turn`);
       rollDie(player);
-      addPlayerTotal(player); // refactored
-      placePlayer(player); // refactored
+      addPlayerTotal(player);
+      placePlayer(player);
       addCoal(player);
-      checkForChimneys(player); // refactored
-      checkForCandyCanes(player); // refactored
-      gameStatus(player); // refactored
+      checkForChimneys(player);
+      checkForCandyCanes(player);
+      gameStatus(player);
     }
   }
 }
 
+// rolls die and stores number in dieRollNumber
+function rollDie(player) {
+  dieRollNumber = Math.floor(Math.random() * 6) + 1;
+  if (player.title === 'player1') {
+    $player1GameLog.fadeOut();
+    $player1GameLog.text(`${player.displayName} rolled a ${dieRollNumber}`);
+    $player1GameLog.fadeIn();
+  }
+  if (player.title === 'computer' ) {
+    $computerGameLog.fadeOut();
+    $computerGameLog.text(`${player.displayName} rolled a ${dieRollNumber}`);
+    $computerGameLog.fadeIn();
+  }
+}
+
+// adds the resulting number of the die to the player total
 function addPlayerTotal(player) {
   player.total += dieRollNumber;
 }
@@ -244,12 +237,14 @@ function addPlayerTotal(player) {
 
 // place player on board
 function placePlayer(player) {
-  console.log(player.character);
+  // removes class from previous square
   $(`.${player.character}`).removeClass(player.character);
+  // grabs the div with the data Id equal to player total from the gameBoard
   $playerSquare = $(`[data-id="${player.total}"]`);
+  // adds the players character class to the correct div
   $playerSquare.addClass(`${player.character}`);
-
 }
+
 
 function gameStatus(player) {
   if (player.total >= 100) {
@@ -266,9 +261,6 @@ function gameStatus(player) {
 
   }
 }
-
-
-
 
 // functions that Check the square type player lands on
 
@@ -297,7 +289,7 @@ function checkForCandyCanes(player) {
         $player1GameLog.text(`${player.displayName} went up the candy Cane!`);
       }
       if (player.title === 'computer' )
-      $computerGameLog.text(`${player.displayName} went up the candy Cane!`);
+        $computerGameLog.text(`${player.displayName} went up the candy Cane!`);
     }
   }
 }
@@ -321,7 +313,7 @@ function addCoal(player) {
         $player1GameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
       }
       if (player.title === 'computer' )
-      $computerGameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
+        $computerGameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
     }
   }
 }
