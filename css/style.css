@@ -18,6 +18,18 @@ h1 {
   text-align: center;
   font-size: 30px;
   padding-top: 20px;
+  margin-bottom: 50px;
+  color: #0a5bb2;
+  text-shadow: 1px 1px black;
+
+}
+
+span:first-child {
+  background: white;
+  opacity: 0.7;
+  border: 5px solid #0a5bb2;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 
@@ -97,9 +109,9 @@ h1 {
   display: none;
   width: 500px;
   height: 80px;
-  margin: 10px auto;
+  margin: 20px auto;
   align-items: flex-start;
-  background: #fff;
+  background: #d3e8ff;
   opacity: 0.7;
   border-radius: 10px;
   border: 5px solid #0a5bb2;
@@ -115,6 +127,7 @@ h1 {
   font-size: 14px;
   text-align: center;
   font-weight: bold;
+  opacity: 1;
 }
 
 
@@ -163,7 +176,7 @@ h1 {
   transform: rotate(-60deg);
   left: 290px;
   z-index: 2;
-  opacity: 1;
+  opacity: 0.7;
 }
 
 /*square 78*/
@@ -205,6 +218,7 @@ h1 {
   height: 250px;
   left: 150px;
   z-index: 1;
+  opacity: 0.7;
 }
 
 /*square 93*/
@@ -250,7 +264,8 @@ div.coal {
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 1;
-
+  color: white;
+  text-shadow: 1px 1px black;
 }
 
 
