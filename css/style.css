@@ -12,19 +12,6 @@ button, input {
   font-family: 'Rubik', sans-serif;
 }
 
-.game-board {
-    display: flex;
-    border: 1px solid black;
-    flex-wrap: wrap;
-    width: 500px;
-    height: 450px;
-    margin: 0 auto;
-    position: relative;
-}
-
-div {
-  border: 1px solid black;
-}
 
 h1 {
   display: block;
@@ -34,15 +21,37 @@ h1 {
 
 }
 
-.player1GameLog {
- text-align: center;
+
+/*logs display occurances of game */
+
+.logs {
+  border: none;
+  height: 60px;
+  font-weight: bold;
+  text-shadow: 1px 1px black;
+  margin-bottom: 10px;
+
 }
 
-.computerGameLog {
- text-align: center;
+
+.logs .player1GameLog {
+  text-align: center;
+}
+
+.logs .computerGameLog {
+  text-align: center;
 }
 
 
+/* gamelog text colors depending on character */
+
+.red {
+  color: #f4428c;
+}
+
+.white {
+  color: white;
+}
 
 .character-select-menu {
   display: flex;
@@ -59,29 +68,53 @@ h1 {
   opacity: 0.8;
 }
 
-.characterButton {
+.characterButton img {
+  width: 70px;
+  height: 60px;
+  background-repeat: no-repeat;
+}
+
+.characterButton{
+  height: 100px;
+  width: 60px;
+  font-size: 15px;
+  font-weight: bold;
+  background: url('images/santa-image.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-top: 70px;
+  border: none;
   display: block;
 }
 
+.characterButton:hover {
+  color: orange;
+  border: 2px solid orange;
+}
+
+
+.elf-button {
+  background: url('images/elf-image.jpg');
+  background-size: 100px;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
 
 /*divs where game is played*/
 
- .roll-die-div {
-   display: none;
-   width: 500px;
-   margin: 10px auto;
-   justify-content: space-around;
-   align-items: center;
-   background: #fff;
-   opacity: 0.7;
-}
 
 .game-board {
- display: none;
-
+  border: 1px solid black;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 450px;
+  margin: 0 auto;
+  position: relative;
+  display: none;
 }
 
 .game-board div {
+  border: 1px solid black;
   width: 10%;
   height: 10%;
   margin: 0 auto;
@@ -89,6 +122,41 @@ h1 {
   opacity: 0.5;
 }
 
+.roll-die-div {
+  display: none;
+  width: 500px;
+  margin: 10px auto;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  opacity: 0.7;
+}
+
+
+.rollDie {
+  width: 80px;
+  height: 50px;
+}
+
+.rollDie:hover {
+  border: 2px solid red;
+}
+
+.rollDie:active {
+  width: 85px;
+  height: 55px;
+  background: green;
+}
+
+
+/*makes game visible*/
+.visible {
+  display: flex;
+}
+
+
+
+/*square types*/
 
 .candy-cane {
   background: red;
@@ -103,7 +171,6 @@ h1 {
   left: 290px;
   z-index: 2;
   opacity: 1;
-
 }
 
 /*square 78*/
@@ -186,10 +253,6 @@ h1 {
 
 
 
-.gameBoard div  {
-  z-index: 1;
-}
-
 .chimney {
   background: brown;
 }
@@ -203,11 +266,9 @@ div.coal {
   background: url("https://s-media-cache-ak0.pinimg.com/originals/34/9b/9a/349b9a0a1dff61ed8218b818f8628a0a.jpg");
   background-size: contain;
   background-repeat: no-repeat;
-  /*background-position: center;*/
   opacity: 1;
 
 }
-
 
 /*player character images*/
 
@@ -223,79 +284,11 @@ div.santa {
 
 
 div.elf {
-    background: url('images/elf-image.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 3;
-    opacity: 0.9;
-
-}
-
-.red {
-  color: #f4428c;
-}
-
-.white {
-  color: white;
-}
-
-.logs {
-  border: none;
-  height: 60px;
-  font-weight: bold;
-  text-shadow: 1px 1px black;
-  margin-bottom: 10px;
-
-}
-
-.rollDie {
-  width: 80px;
-  height: 50px;
-}
-
-.rollDie:hover {
-  border: 2px solid red;
-}
-
-.rollDie:active {
-  width: 85px;
-  height: 55px;
-  background: green;
-}
-
-
-.visible {
-  display: flex;
-}
-
-.characterButton img {
-  width: 70px;
-  height: 60px;
-  background-repeat: no-repeat;
-}
-
-.characterButton{
-  height: 100px;
-  width: 60px;
-  font-size: 15px;
-  font-weight: bold;
-  background: url('images/santa-image.webp');
-  background-size: contain;
-  background-repeat: no-repeat;
-  padding-top: 70px;
-  border: none;
-
-}
-
-.characterButton:hover {
-  color: orange;
-  border: 2px solid orange;
-}
-
-.elf-button {
   background: url('images/elf-image.jpg');
-  background-size: 100px;
-  background-position: top center;
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
+  z-index: 3;
+  opacity: 0.9;
+
 }
