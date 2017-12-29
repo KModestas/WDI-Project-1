@@ -21,37 +21,6 @@ h1 {
 }
 
 
-/*logs display occurances of game */
-
-.logs {
-  border: none;
-  height: 60px;
-  font-weight: bold;
-  text-shadow: 1px 1px black;
-  margin-bottom: 10px;
-
-}
-
-
-.logs .player-1-game-log {
-  text-align: center;
-}
-
-.logs .computer-game-log {
-  text-align: center;
-}
-
-
-/* gamelog text colors depending on character */
-
-.red {
-  color: #f4428c;
-}
-
-.white {
-  color: white;
-}
-
 .character-select-menu {
   display: flex;
   flex-wrap: wrap;
@@ -63,7 +32,9 @@ h1 {
   margin: 0 auto;
   margin-top: auto;
   text-align: center;
-  background: #fff;
+  background: #ffffff;
+  border: 10px solid #0a5bb2;
+  border-radius: 10px;
   opacity: 0.8;
 }
 
@@ -88,7 +59,8 @@ h1 {
 
 .character-button:hover {
   color: orange;
-  border: 2px solid orange;
+  border: 1px dashed orange;
+  cursor: pointer;
 }
 
 
@@ -124,27 +96,54 @@ h1 {
 .roll-die-div {
   display: none;
   width: 500px;
+  height: 80px;
   margin: 10px auto;
-  justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   background: #fff;
   opacity: 0.7;
+  border-radius: 10px;
+  border: 5px solid #0a5bb2;
 }
 
+
+/*logs display occurances of game */
+
+.logs {
+  height: 50px;
+  width: 400px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+/* gamelog text colors depending on character */
+
+.red {
+  color: #e50620;
+}
+
+.green {
+  color: #269e14;
+}
 
 .die {
   width: 80px;
   height: 50px;
+  margin-top: 11px;
 }
 
 .die:hover {
-  border: 2px solid red;
+  width: 78px;
+  height: 48px;
+  cursor: pointer;
 }
 
 .die:active {
   width: 85px;
   height: 55px;
-  background: green;
+  background: orange;
 }
 
 
@@ -153,13 +152,8 @@ h1 {
   display: flex;
 }
 
-
-
 /*square types*/
 
-.candy-cane {
-  background: red;
-}
 
 /*square 52 + all other candycanes*/
 .candy-cane-img {
@@ -251,16 +245,6 @@ h1 {
 }
 
 
-
-.chimney {
-  background: brown;
-}
-
-
-.present {
-  background: purple;
-}
-
 div.coal {
   background: url("https://s-media-cache-ak0.pinimg.com/originals/34/9b/9a/349b9a0a1dff61ed8218b818f8628a0a.jpg");
   background-size: contain;
@@ -268,6 +252,7 @@ div.coal {
   opacity: 1;
 
 }
+
 
 /*player character images*/
 

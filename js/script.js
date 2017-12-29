@@ -134,13 +134,13 @@ function characterColor() {
   if (player1.character === 'santa') {
     $player1GameLog.addClass('red');
   } else{
-    $player1GameLog.addClass('white');
+    $player1GameLog.addClass('green');
   }
 
   if (computer.character === 'santa') {
     $computerGameLog.addClass('red');
   } else {
-    $computerGameLog.addClass('white');
+    $computerGameLog.addClass('green');
   }
 }
 
@@ -263,7 +263,6 @@ function gameStatus(player) {
 }
 
 // functions that Check the square type player lands on
-
 function checkForChimneys(player) {
   for (let i = 0; i < chimneys.length; i++) {
     if (chimneys[i].position === player.total) {
@@ -310,10 +309,10 @@ function addCoal(player) {
     if (coals[i].position === player.total) {
       player.coal = true;
       if (player.title === 'player1') {
-        $player1GameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
+        $player1GameLog.text(`${player.displayName} has landed on a coal!`);
       }
       if (player.title === 'computer' )
-        $computerGameLog.text(`${player.displayName} has been naughty this year and must miss their go!`);
+        $computerGameLog.text(`${player.displayName} has landed on a coal!`);
     }
   }
 }
