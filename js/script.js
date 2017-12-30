@@ -91,9 +91,10 @@ const candyCanes = [
 
 // presents array
 const presents = [
-  { position: 12 },
+  { position: 16 },
   { position: 56 },
-  { position: 82 }
+  { position: 82 },
+  { position: 2 }
 ];
 
 
@@ -101,7 +102,8 @@ const presents = [
 const coals = [
   { position: 95 },
   { position: 13 },
-  { position: 22 }
+  { position: 22 },
+  { position: 73 }
 ];
 
 
@@ -182,35 +184,53 @@ function loadGame() {
 $rollDieButton.on('click', ()=> {
   $rollDieButton.prop('disabled', true );
 
-  setTimeout(function(){
-    processTurn(player1);
-  },250);
-  setTimeout(function(){
-    processTurn(computer);
-  },1000);
-
+  if (player1.present) {
+    player1.present = false;
+    setTimeout(function(){
+      processTurn(player1);
+    },250);
+  } else if (computer.present){
+    computer.present = false;
+    setTimeout(function(){
+      processTurn(computer);
+    },1500);
+  } else {
+    setTimeout(function(){
+      processTurn(player1);
+    },250);
+    setTimeout(function(){
+      processTurn(computer);
+    },1250);
+  }
   setTimeout(function(){
     $rollDieButton.prop( 'disabled', false );
   },1500);
 });
 
+
+
+// should check for player.coal to be true
+// if player has coal, coal is set to false and players turn is not processed this go.
+
+
+
+
+
 function processTurn(player) {
-  // should check for player.coal to be true
-  if (gameOver === false) {
-    // if player has coal, coal is set to false and players turn is not processed this go.
-    if (player.coal) {
-      player.coal = false;
-    } else if (!player.coal) {
-      rollDie(player);
-      addPlayerTotal(player);
-      placePlayer(player);
-      addCoal(player);
-      checkForChimneys(player);
-      checkForCandyCanes(player);
-      gameStatus(player);
-    }
+  if (player.coal) {
+    player.coal = false;
+  } else {
+    rollDie(player);
+    addPlayerTotal(player);
+    placePlayer(player);
+    addCoal(player);
+    addPresent(player);
+    checkForChimney(player);
+    checkForCandyCane(player);
+    gameStatus(player);
   }
 }
+
 
 // rolls die and stores number in dieRollNumber
 function rollDie(player) {
@@ -261,7 +281,7 @@ function gameStatus(player) {
 }
 
 // functions that Check the square type player lands on
-function checkForChimneys(player) {
+function checkForChimney(player) {
   for (let i = 0; i < chimneys.length; i++) {
     if (chimneys[i].position === player.total) {
       player.total = chimneys[i].targetPosition;
@@ -277,7 +297,7 @@ function checkForChimneys(player) {
 }
 
 
-function checkForCandyCanes(player) {
+function checkForCandyCane(player) {
   for (let i = 0; i < candyCanes.length; i++) {
     if (candyCanes[i].position === player.total) {
       player.total = candyCanes[i].targetPosition;
@@ -292,11 +312,16 @@ function checkForCandyCanes(player) {
 }
 
 
-function checkForPresents(player) {
+function addPresent(player) {
   for (let i = 0; i < presents.length; i++) {
     if (presents[i].position === player.total) {
-      // player.present = true;
-      console.log(`${player.title} has been gifted another go, merry christmas!`);
+      player.present = true;
+      if (player.title === 'player1') {
+        $player1GameLog.text(`${player.displayName} landed on a present! Merry Christmas!`);
+      }
+      if (player.title === 'computer') {
+        $computerGameLog.text(`${player.displayName} landed on a present! Merry Christmas!`);
+      }
     }
   }
 }
@@ -307,10 +332,10 @@ function addCoal(player) {
     if (coals[i].position === player.total) {
       player.coal = true;
       if (player.title === 'player1') {
-        $player1GameLog.text(`${player.displayName} has landed on a coal!`);
+        $player1GameLog.text(`${player.displayName} has landed on a coal!, Naughty Naughty`);
       }
       if (player.title === 'computer' )
-        $computerGameLog.text(`${player.displayName} has landed on a coal!`);
+        $computerGameLog.text(`${player.displayName} has landed on a coal! Naughty Naughty`);
     }
   }
 }

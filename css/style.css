@@ -61,7 +61,7 @@ span:first-child {
   width: 60px;
   font-size: 15px;
   font-weight: bold;
-  background: url('images/santa-image.webp');
+  background: url('./images/santa-image.webp');
   background-size: contain;
   background-repeat: no-repeat;
   padding-top: 70px;
@@ -77,7 +77,7 @@ span:first-child {
 
 
 .elf-button {
-  background: url('images/elf-image.jpg');
+  background: url('./images/elf-image.jpg');
   background-size: 100px;
   background-position: top center;
   background-repeat: no-repeat;
@@ -264,8 +264,18 @@ span:first-child {
 }
 
 
-div.coal {
+div.coals {
   background: url("https://s-media-cache-ak0.pinimg.com/originals/34/9b/9a/349b9a0a1dff61ed8218b818f8628a0a.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 1;
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+
+div.presents {
+  background: url("http://weclipart.com/gimg/4B69D77980E5B22F/christmas-presents-clip-art-happy-holidays-830x889.png");
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 1;
@@ -288,7 +298,7 @@ div.santa {
 
 
 div.elf {
-  background: url('images/elf-image.jpg');
+  background: url('./images/elf-image.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
