@@ -4,9 +4,7 @@ let gameOver = false;
 let computerSelectTurn = null;
 // resulting number from rolling die is stored
 let dieRollNumber = null;
-let removedCharacter = null;
 let $playerSquare = null;
-const turn = 'player1';
 
 
 // all elements grabbed from DOM
@@ -103,7 +101,7 @@ const presents = [
 const coals = [
   { position: 95 },
   { position: 13 },
-  { position: 23 }
+  { position: 22 }
 ];
 
 
@@ -193,7 +191,7 @@ $rollDieButton.on('click', ()=> {
 
   setTimeout(function(){
     $rollDieButton.prop( 'disabled', false );
-  },1000);
+  },1500);
 });
 
 function processTurn(player) {
