@@ -18,13 +18,13 @@ h1 {
   text-align: center;
   font-size: 30px;
   padding-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   color: #0dabdb;
   text-shadow: 2px 2px #022b38;
 
 }
 
-span:first-child {
+h1 span:first-child {
   background: white;
   opacity: 0.7;
   border: 5px solid #0a5bb2;
@@ -110,7 +110,7 @@ span:first-child {
   width: 500px;
   height: 80px;
   margin: 20px auto;
-  align-items: flex-start;
+  align-items: center;
   background: #d3e8ff;
   opacity: 0.7;
   border-radius: 10px;
@@ -123,11 +123,12 @@ span:first-child {
 .logs {
   height: 50px;
   width: 400px;
-  margin-bottom: 10px;
+  margin-bottom: 27px;
   font-size: 14px;
   text-align: center;
   font-weight: bold;
   opacity: 1;
+  /*z-index: 3;*/
 }
 
 
@@ -144,7 +145,7 @@ span:first-child {
 .die {
   width: 80px;
   height: 50px;
-  margin-top: 11px;
+  margin-top: 4px;
   background: url('http://weclipart.com/gimg/086115793A19A243/free-to-use-amp-public-domain-dice-clip-art.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -165,10 +166,52 @@ span:first-child {
 }
 
 
-/*makes game visible*/
+.winner-div {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border: 0.5px solid #0a5bb2;
+  border-radius: 10px;
+  background: #ffffff;
+  opacity: .7;
+  color: #e50620;
+  text-shadow: 1px 1px black;
+  margin: 12px auto;
+  /*margin-bottom: 30px;*/
+  text-align: center;
+  width: 300px;
+  height: 50px;
+  left: 500px;
+  display: none;
+
+}
+
+.play-again {
+  height: 35px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 10px;
+  background: #0dabdb;
+  border: 2px solid #0a5bb2;
+  color: #ffffff;
+}
+
+.winner-div button:hover {
+  border: 2px solid orange;
+  background: orange;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+
+
+/*makes game visible - needs to be below elements*/
 .visible {
   display: flex;
 }
+
 
 /*square types*/
 

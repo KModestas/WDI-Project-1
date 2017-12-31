@@ -1,7 +1,7 @@
 
-let gameOver = false;
 // allows computer to select their character
 let computerSelectTurn = null;
+let gameOver = false;
 // resulting number from rolling die is stored
 let dieRollNumber = null;
 let $playerSquare = null;
@@ -15,6 +15,9 @@ const $gameBoard = $('.game-board');
 const $rollDieDiv = $('.roll-die-div');
 const $player1GameLog = $('.player-1-game-log');
 const $computerGameLog = $('.computer-game-log');
+const $winnerDiv = $('.winner-div');
+const $winnerName = $('winner-name')
+const $playAgain = $('.play-again');
 
 
 // player objects
@@ -193,7 +196,7 @@ $rollDieButton.on('click', ()=> {
     computer.present = false;
     setTimeout(function(){
       processTurn(computer);
-    },1500);
+    },1250);
   } else {
     setTimeout(function(){
       processTurn(player1);
@@ -213,21 +216,20 @@ $rollDieButton.on('click', ()=> {
 // if player has coal, coal is set to false and players turn is not processed this go.
 
 
-
-
-
 function processTurn(player) {
-  if (player.coal) {
-    player.coal = false;
-  } else {
-    rollDie(player);
-    addPlayerTotal(player);
-    placePlayer(player);
-    addCoal(player);
-    addPresent(player);
-    checkForChimney(player);
-    checkForCandyCane(player);
-    gameStatus(player);
+  if (gameOver === false) {
+    if (player.coal) {
+      player.coal = false;
+    } else {
+      rollDie(player);
+      addPlayerTotal(player);
+      placePlayer(player);
+      addCoal(player);
+      addPresent(player);
+      checkForChimney(player);
+      checkForCandyCane(player);
+      gameStatus(player);
+    }
   }
 }
 
@@ -268,17 +270,20 @@ function gameStatus(player) {
   if (player.total >= 100) {
     gameOver = true;
     $rollDieButton.off('click');
-    alert(`${player.displayName} wins!`);
-
     $player1GameLog.remove();
     $computerGameLog.remove();
 
-    setTimeout(function(){
-      window.location.reload();
-    }, 500);
-
+    $winnerDiv.addClass('visible');
+    $winnerDiv.fadeIn('slow');
+    if (player1.total >=100) {
+      $winnerName.text(`${player1.displayName}`);
+      $winnerName.addClass('');
+    } else {
+      $winnerName.text(`${computer.displayName}`);
+    }
   }
 }
+
 
 // functions that Check the square type player lands on
 function checkForChimney(player) {
@@ -306,7 +311,7 @@ function checkForCandyCane(player) {
         $player1GameLog.text(`${player.displayName} went up the candy Cane!`);
       }
       if (player.title === 'computer' )
-        $computerGameLog.text(`${player.displayName} went up the candy Cane!`);
+      $computerGameLog.text(`${player.displayName} went up the candy Cane!`);
     }
   }
 }
@@ -335,7 +340,7 @@ function addCoal(player) {
         $player1GameLog.text(`${player.displayName} has landed on a coal!, Naughty Naughty`);
       }
       if (player.title === 'computer' )
-        $computerGameLog.text(`${player.displayName} has landed on a coal! Naughty Naughty`);
+      $computerGameLog.text(`${player.displayName} has landed on a coal! Naughty Naughty`);
     }
   }
 }
