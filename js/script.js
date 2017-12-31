@@ -26,8 +26,7 @@ const player1 = {
   displayName: 'Player 1', // refers to name you want to display on screen to user
   total: 0, // total number from die rolls
   character: null, // this value must match up to the css class that displays the character image
-  coal: false,
-  winner: false
+  coal: false
 };
 
 
@@ -36,8 +35,7 @@ const computer = {
   displayName: 'Computer',
   total: 0,
   character: null,
-  coal: false,
-  winner: false
+  coal: false
 };
 
 
@@ -269,6 +267,9 @@ function placePlayer(player) {
   $playerSquare = $(`[data-id="${player.total}"]`);
   // adds the players character class to the correct div
   $playerSquare.addClass(`${player.character}`);
+  if (player1.total === computer.total) {
+    $playerSquare.style.borderColor = "purple";
+  }
 }
 
 

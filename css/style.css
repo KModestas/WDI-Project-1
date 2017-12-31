@@ -334,6 +334,10 @@ div.santa {
   background-position: center;
   z-index: 3;
   opacity: 0.9;
+  border: 3px solid red;
+  font-weight: bold;
+  color: black;
+  text-shadow: 2px 2px white;
 }
 
 
@@ -345,5 +349,8 @@ div.elf {
   background-position: center;
   z-index: 3;
   opacity: 0.9;
-
+  border: 3px solid green;
+  font-weight: bold;
+  color: black;
+  text-shadow: 2px 2px white;
 }
