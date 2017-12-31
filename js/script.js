@@ -16,7 +16,7 @@ const $rollDieDiv = $('.roll-die-div');
 const $player1GameLog = $('.player-1-game-log');
 const $computerGameLog = $('.computer-game-log');
 const $winnerDiv = $('.winner-div');
-const $winnerName = $('winner-name')
+const $winnerName = $('.winner-name');
 const $playAgain = $('.play-again');
 
 
@@ -26,7 +26,8 @@ const player1 = {
   displayName: 'Player 1', // refers to name you want to display on screen to user
   total: 0, // total number from die rolls
   character: null, // this value must match up to the css class that displays the character image
-  coal: false
+  coal: false,
+  winner: false
 };
 
 
@@ -35,7 +36,8 @@ const computer = {
   displayName: 'Computer',
   total: 0,
   character: null,
-  coal: false
+  coal: false,
+  winner: false
 };
 
 
@@ -185,25 +187,29 @@ function loadGame() {
 
 // player and computer object gets passed as arguments for process turn which gives all other function sin process turn access to the player/computer objects properties under the reference name/variable of "player"
 $rollDieButton.on('click', ()=> {
-  $rollDieButton.prop('disabled', true );
+  // $rollDieButton.prop('disabled', true );
 
   if (player1.present) {
     player1.present = false;
-    setTimeout(function(){
-      processTurn(player1);
-    },250);
+    // setTimeout(function(){
+    //
+    // },250);
+    processTurn(player1);
   } else if (computer.present){
     computer.present = false;
-    setTimeout(function(){
-      processTurn(computer);
-    },1250);
+    // setTimeout(function(){
+    //
+    // },1250);
+    processTurn(computer);
   } else {
-    setTimeout(function(){
-      processTurn(player1);
-    },250);
-    setTimeout(function(){
-      processTurn(computer);
-    },1250);
+    // setTimeout(function(){
+    //
+    // },250);
+    processTurn(player1);
+    // setTimeout(function(){
+    //
+    // },1250);
+    processTurn(computer);
   }
   setTimeout(function(){
     $rollDieButton.prop( 'disabled', false );
@@ -268,19 +274,22 @@ function placePlayer(player) {
 
 function gameStatus(player) {
   if (player.total >= 100) {
-    gameOver = true;
+    player.winner = true;
     $rollDieButton.off('click');
     $player1GameLog.remove();
     $computerGameLog.remove();
 
+    $winnerDiv.animate({
+      opacity: 1
+    }, 1500);
     $winnerDiv.addClass('visible');
-    $winnerDiv.fadeIn('slow');
-    if (player1.total >=100) {
-      $winnerName.text(`${player1.displayName}`);
-      $winnerName.addClass('');
-    } else {
-      $winnerName.text(`${computer.displayName}`);
+    if (player.character === 'santa') {
+      $winnerName.addClass('red');
     }
+    else {
+      $winnerName.addClass('green');
+    }
+    $winnerName.text(`${player.displayName} Wins!`);
   }
 }
 
