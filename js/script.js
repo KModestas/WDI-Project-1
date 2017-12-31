@@ -286,9 +286,11 @@ function gameStatus(player) {
     $winnerDiv.addClass('visible');
     if (player.character === 'santa') {
       $winnerName.addClass('red');
+      $winnerDiv.css('border-color', 'red');
     }
     else {
       $winnerName.addClass('green');
+      $winnerDiv.css('border-color', 'green');
     }
     $winnerName.text(`${player.displayName} Wins!`);
   }
