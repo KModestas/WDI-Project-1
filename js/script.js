@@ -221,7 +221,7 @@ $rollDieButton.on('click', ()=> {
 
   setTimeout(function(){
     $rollDieButton.prop( 'disabled', false );
-  },1500);
+  },1250);
 });
 
 
@@ -240,7 +240,7 @@ function processTurn(player) {
 
 // rolls die and stores number in dieRollNumber
 function rollDie(player) {
-  dieRollNumber = Math.floor(Math.random() * 6) + 1;
+  dieRollNumber = Math.floor(Math.random() * 1) + 1;
   if (player.title === 'player1') {
     $player1GameLog.fadeOut();
     $player1GameLog.text(`${player.displayName} rolled a ${dieRollNumber}`);
@@ -261,12 +261,17 @@ function addPlayerTotal(player) {
 
 // place player on board
 function placePlayer(player) {
-  // removes class from previous square
+  // removes class from previous square by grabbing element with class santa or elf and removing the class santa or elf from it
   $(`.${player.character}`).removeClass(player.character);
   // grabs the div with the data Id equal to player total from the gameBoard
   $playerSquare = $(`[data-id="${player.total}"]`);
   // adds the players character class to the correct div
   $playerSquare.addClass(`${player.character}`);
+  if (player1.total === computer.total){
+    $playerSquare.addClass('neutral-square');
+  } else {
+    $('.neutral-square').removeClass('neutral-square');
+  }
 }
 
 
@@ -296,12 +301,20 @@ function gameStatus(player) {
 
   } else if (player.total > 100) {
     player.total -= dieRollNumber;
+    const winningNumber = 100 - player.total;
     placePlayer(player);
+    if (player === player1) {
+      $player1GameLog.text(`${player.displayName} rolled a ${dieRollNumber} but needs a ${winningNumber} to win`);
+    } else {
+      $computerGameLog.text(`${player.displayName} rolled a ${dieRollNumber} but needs a ${winningNumber} to win`);
+    }
 
   }
 }
 
-
+$playAgain.on('click', function(){
+  location.reload();
+});
 
 
 // functions that Check the square type player lands on
@@ -311,10 +324,10 @@ function checkForChimney(player) {
       player.total = chimneys[i].targetPosition;
       placePlayer(player);
       if (player.title === 'player1') {
-        $player1GameLog.text(`${player.displayName} went down the chimney!`);
+        $player1GameLog.text(`${player.displayName} went down the chimney`);
       }
       if (player.title === 'computer' ) {
-        $computerGameLog.text(`${player.displayName} went down the chimney!`);
+        $computerGameLog.text(`${player.displayName} went down the chimney`);
       }
     }
   }
@@ -327,10 +340,10 @@ function checkForCandyCane(player) {
       player.total = candyCanes[i].targetPosition;
       placePlayer(player);
       if (player.title === 'player1') {
-        $player1GameLog.text(`${player.displayName} went up the candy Cane!`);
+        $player1GameLog.text(`${player.displayName} went up the candy Cane`);
       }
       if (player.title === 'computer' )
-      $computerGameLog.text(`${player.displayName} went up the candy Cane!`);
+      $computerGameLog.text(`${player.displayName} went up the candy Cane`);
     }
   }
 }
@@ -341,10 +354,10 @@ function addPresent(player) {
     if (presents[i].position === player.total) {
       player.present = true;
       if (player.title === 'player1') {
-        $player1GameLog.text(`${player.displayName} landed on a present! Merry Christmas!`);
+        $player1GameLog.text(`${player.displayName} landed on a present. Merry Christmas`);
       }
       if (player.title === 'computer') {
-        $computerGameLog.text(`${player.displayName} landed on a present! Merry Christmas!`);
+        $computerGameLog.text(`${player.displayName} landed on a present. Merry Christmas`);
       }
     }
   }
@@ -356,10 +369,10 @@ function addCoal(player) {
     if (coals[i].position === player.total) {
       player.coal = true;
       if (player.title === 'player1') {
-        $player1GameLog.text(`${player.displayName} has landed on a coal!, Naughty Naughty`);
+        $player1GameLog.text(`${player.displayName} has landed on a coal. Naughty naughty`);
       }
       if (player.title === 'computer' )
-      $computerGameLog.text(`${player.displayName} has landed on a coal! Naughty Naughty`);
+        $computerGameLog.text(`${player.displayName} has landed on a coal. Naughty naughty`);
     }
   }
 }
