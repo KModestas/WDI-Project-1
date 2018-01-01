@@ -240,7 +240,7 @@ function processTurn(player) {
 
 // rolls die and stores number in dieRollNumber
 function rollDie(player) {
-  dieRollNumber = Math.floor(Math.random() * 1) + 1;
+  dieRollNumber = Math.floor(Math.random() * 6) + 1;
   if (player.title === 'player1') {
     $player1GameLog.fadeOut();
     $player1GameLog.text(`${player.displayName} rolled a ${dieRollNumber}`);
