@@ -1,15 +1,14 @@
 
 // allows computer to select their character
 let computerSelectTurn = null;
-let gameOver = false;
+let player1Turn = true;
 // resulting number from rolling die is stored
 let dieRollNumber = null;
 let $playerSquare = null;
-let turn = null;
 
 
 // all elements grabbed from DOM
-const $rollDieButton = $('.die');
+const $die = $('.die');
 const $characterButton = $('.character-button');
 const $characterMenu = $('.character-menu');
 const $gameBoard = $('.game-board');
@@ -19,6 +18,8 @@ const $computerGameLog = $('.computer-game-log');
 const $winnerDiv = $('.winner-div');
 const $winnerName = $('.winner-name');
 const $playAgain = $('.play-again');
+const $instructions = $('.instructions');
+const $proceed = $('.proceed');
 
 
 // player objects
@@ -122,6 +123,19 @@ function playSound() {
 playSound();
 
 
+$proceed.on('click', function(){
+  $instructions.hide();
+  $characterMenu.animate({
+    opacity: 0.8
+  }, 1000);
+  $characterMenu.addClass('visible');
+});
+
+
+
+
+
+
 $characterButton.on('click', function(e){
   // assigns the character the player clicks on
   setPlayer1Property(e);
@@ -193,10 +207,11 @@ function loadGame() {
 
 
 // player and computer object gets passed as arguments for process turn which gives all other function sin process turn access to the player/computer objects properties under the reference name/variable of "player"
-$rollDieButton.on('click', ()=> {
-  $rollDieButton.prop('disabled', true );
+$die.on('click', ()=> {
+  $die.prop('disabled', true );
 
   if (player1.present || computer.coal) {
+    player1Turn = true;
     player1.present = false;
     computer.coal = false;
     setTimeout(function(){
@@ -204,28 +219,32 @@ $rollDieButton.on('click', ()=> {
     },250);
 
   } else if (computer.present || player1.coal) {
+    player1Turn = false;
     computer.present = false;
     player1.coal = false;
     setTimeout(function(){
       processTurn(computer);
-    },1250);
+    },2000);
 
   } else {
     setTimeout(function(){
+      player1Turn = false;
       processTurn(player1);
     },250);
     setTimeout(function(){
+      player1Turn = true;
       processTurn(computer);
-    },1250);
+    },2000);
   }
 
   setTimeout(function(){
-    $rollDieButton.prop( 'disabled', false );
-  },1250);
+    $die.prop( 'disabled', false );
+  },2000);
 });
 
 
 function processTurn(player) {
+  inactiveDie();
   rollDie(player);
   addPlayerTotal(player);
   placePlayer(player);
@@ -237,6 +256,26 @@ function processTurn(player) {
 }
 
 
+function inactiveDie() {
+  if (player1Turn === false) {
+    // $die.hover(function(){
+    //   $(this).css('width', '80px');
+    //   $(this).css('height', '50px');
+    //   $(this).css('cursor', 'wait');
+    // });
+    $die.css('opacity', '0.5');
+    player1Turn = true;
+  } else if (player1Turn === true){
+    $die.hover(function(){
+      $(this).css('width', '78px');
+      $(this).css('height', '48px');
+      $(this).css('cursor', 'pointer');
+    });
+    $die.css('opacity', '1');
+    player1Turn = false;
+  }
+
+}
 
 // rolls die and stores number in dieRollNumber
 function rollDie(player) {
@@ -289,7 +328,7 @@ function winnerNameColor(player) {
 function gameStatus(player) {
   if (player.total === 100) {
     player.winner = true;
-    $rollDieButton.off('click');
+    $die.off('click');
     $player1GameLog.remove();
     $computerGameLog.remove();
     winnerNameColor(player);
