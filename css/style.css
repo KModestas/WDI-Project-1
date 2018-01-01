@@ -354,3 +354,9 @@ div.elf {
   color: black;
   text-shadow: 2px 2px white;
 }
+
+div.neutral-square {
+  border: 5px solid orange;
+  color: black;
+  text-shadow: 2px 2px orange;
+}

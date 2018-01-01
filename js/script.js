@@ -5,6 +5,7 @@ let gameOver = false;
 // resulting number from rolling die is stored
 let dieRollNumber = null;
 let $playerSquare = null;
+let turn = null;
 
 
 // all elements grabbed from DOM
@@ -127,13 +128,13 @@ $characterButton.on('click', function(e){
   // computer assigne character after player
   computersChoice(e);
   // game log text color depending on character
-  characterColor();
+  characterLogColor();
   // loads gameboard
   loadGame();
 });
 
 
-function characterColor() {
+function characterLogColor() {
   if (player1.character === 'santa') {
     $player1GameLog.addClass('red');
   } else{
@@ -179,63 +180,56 @@ function loadGame() {
   $rollDieDiv.addClass('visible');
 }
 
+
+
 // have coal property on each object
 // have if statement that checks if coal is true, if thats the case then dont process the turn and then change coal proerty to false;
 
 
 // player and computer object gets passed as arguments for process turn which gives all other function sin process turn access to the player/computer objects properties under the reference name/variable of "player"
 $rollDieButton.on('click', ()=> {
-  // $rollDieButton.prop('disabled', true );
+  $rollDieButton.prop('disabled', true );
 
-  if (player1.present) {
+  if (player1.present || computer.coal) {
     player1.present = false;
-    // setTimeout(function(){
-    //
-    // },250);
-    processTurn(player1);
-  } else if (computer.present){
+    computer.coal = false;
+    setTimeout(function(){
+      processTurn(player1);
+    },250);
+
+  } else if (computer.present || player1.coal) {
     computer.present = false;
-    // setTimeout(function(){
-    //
-    // },1250);
-    processTurn(computer);
+    player1.coal = false;
+    setTimeout(function(){
+      processTurn(computer);
+    },1250);
+
   } else {
-    // setTimeout(function(){
-    //
-    // },250);
-    processTurn(player1);
-    // setTimeout(function(){
-    //
-    // },1250);
-    processTurn(computer);
+    setTimeout(function(){
+      processTurn(player1);
+    },250);
+    setTimeout(function(){
+      processTurn(computer);
+    },1250);
   }
+
   setTimeout(function(){
     $rollDieButton.prop( 'disabled', false );
   },1500);
 });
 
 
-
-// should check for player.coal to be true
-// if player has coal, coal is set to false and players turn is not processed this go.
-
-
 function processTurn(player) {
-  if (gameOver === false) {
-    if (player.coal) {
-      player.coal = false;
-    } else {
-      rollDie(player);
-      addPlayerTotal(player);
-      placePlayer(player);
-      addCoal(player);
-      addPresent(player);
-      checkForChimney(player);
-      checkForCandyCane(player);
-      gameStatus(player);
-    }
-  }
+  rollDie(player);
+  addPlayerTotal(player);
+  placePlayer(player);
+  addCoal(player);
+  addPresent(player);
+  checkForChimney(player);
+  checkForCandyCane(player);
+  gameStatus(player);
 }
+
 
 
 // rolls die and stores number in dieRollNumber
@@ -267,34 +261,41 @@ function placePlayer(player) {
   $playerSquare = $(`[data-id="${player.total}"]`);
   // adds the players character class to the correct div
   $playerSquare.addClass(`${player.character}`);
-  if (player1.total === computer.total) {
-    $playerSquare.style.borderColor = "purple";
+}
+
+
+function winnerNameColor(player) {
+  if (player.character === 'santa') {
+    $winnerName.addClass('red');
+    $winnerDiv.css('border-color', 'red');
+  } else {
+    $winnerName.addClass('green');
+    $winnerDiv.css('border-color', 'green');
   }
 }
 
 
 function gameStatus(player) {
-  if (player.total >= 100) {
+  if (player.total === 100) {
     player.winner = true;
     $rollDieButton.off('click');
     $player1GameLog.remove();
     $computerGameLog.remove();
-
+    winnerNameColor(player);
     $winnerDiv.animate({
       opacity: 1
     }, 1500);
     $winnerDiv.addClass('visible');
-    if (player.character === 'santa') {
-      $winnerName.addClass('red');
-      $winnerDiv.css('border-color', 'red');
-    }
-    else {
-      $winnerName.addClass('green');
-      $winnerDiv.css('border-color', 'green');
-    }
     $winnerName.text(`${player.displayName} Wins!`);
+
+  } else if (player.total > 100) {
+    player.total -= dieRollNumber;
+    placePlayer(player);
+
   }
 }
+
+
 
 
 // functions that Check the square type player lands on
