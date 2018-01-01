@@ -11,7 +11,7 @@ let turn = null;
 // all elements grabbed from DOM
 const $rollDieButton = $('.die');
 const $characterButton = $('.character-button');
-const $characterMenu = $('.character-select-menu');
+const $characterMenu = $('.character-menu');
 const $gameBoard = $('.game-board');
 const $rollDieDiv = $('.roll-die-div');
 const $player1GameLog = $('.player-1-game-log');
@@ -176,7 +176,13 @@ function computersChoice() {
 // hides character select menu and loads gameboard and die div
 function loadGame() {
   $characterMenu.hide();
+  $gameBoard.animate({
+    opacity: 1
+  }, 1000);
   $gameBoard.addClass('visible');
+  $rollDieDiv.animate({
+    opacity: 1
+  }, 1000);
   $rollDieDiv.addClass('visible');
 }
 
