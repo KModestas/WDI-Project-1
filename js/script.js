@@ -5,6 +5,7 @@ let player1Turn = true;
 // resulting number from rolling die is stored
 let dieRollNumber = null;
 let $playerSquare = null;
+let gameOver = false;
 
 
 // all elements grabbed from DOM
@@ -28,7 +29,8 @@ const player1 = {
   displayName: 'Player 1', // refers to name you want to display on screen to user
   total: 0, // total number from die rolls
   character: null, // this value must match up to the css class that displays the character image
-  coal: false
+  coal: false,
+  winner: false
 };
 
 
@@ -37,7 +39,8 @@ const computer = {
   displayName: 'Computer',
   total: 0,
   character: null,
-  coal: false
+  coal: false,
+  winner: false
 };
 
 
@@ -126,13 +129,10 @@ playSound();
 $proceed.on('click', function(){
   $instructions.hide();
   $characterMenu.animate({
-    opacity: 0.8
+    opacity: 1
   }, 1000);
   $characterMenu.addClass('visible');
 });
-
-
-
 
 
 
@@ -243,15 +243,17 @@ $die.on('click', ()=> {
 
 
 function processTurn(player) {
-  inactiveDie();
-  rollDie(player);
-  addPlayerTotal(player);
-  placePlayer(player);
-  addCoal(player);
-  addPresent(player);
-  checkForChimney(player);
-  checkForCandyCane(player);
-  gameStatus(player);
+  if (!gameOver) {
+    inactiveDie();
+    rollDie(player);
+    addPlayerTotal(player);
+    placePlayer(player);
+    addCoal(player);
+    addPresent(player);
+    checkForChimney(player);
+    checkForCandyCane(player);
+    gameStatus(player);
+  }
 }
 
 
@@ -326,7 +328,7 @@ function winnerNameColor(player) {
 
 function gameStatus(player) {
   if (player.total === 100) {
-    player.winner = true;
+    gameOver = true;
     $die.off('click');
     $player1GameLog.remove();
     $computerGameLog.remove();
@@ -381,7 +383,7 @@ function checkForCandyCane(player) {
         $player1GameLog.text(`${player.displayName} went up the candy Cane`);
       }
       if (player.title === 'computer' )
-      $computerGameLog.text(`${player.displayName} went up the candy Cane`);
+        $computerGameLog.text(`${player.displayName} went up the candy Cane`);
     }
   }
 }
