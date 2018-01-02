@@ -219,13 +219,12 @@ $die.on('click', ()=> {
     },250);
 
   } else if (computer.present || player1.coal) {
-    player1Turn = false;
+    player1Turn = true;
     computer.present = false;
     player1.coal = false;
     setTimeout(function(){
       processTurn(computer);
-    },2000);
-
+    },1500);
   } else {
     setTimeout(function(){
       player1Turn = false;
@@ -234,12 +233,12 @@ $die.on('click', ()=> {
     setTimeout(function(){
       player1Turn = true;
       processTurn(computer);
-    },2000);
+    },1500);
   }
 
   setTimeout(function(){
     $die.prop( 'disabled', false );
-  },2000);
+  },1500);
 });
 
 
