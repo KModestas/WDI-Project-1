@@ -13,7 +13,7 @@ const $die = $('.die');
 const $characterButton = $('.character-button');
 const $characterMenu = $('.character-menu');
 const $gameBoard = $('.game-board');
-const $rollDieDiv = $('.roll-die-div');
+const $dieDiv = $('.die-div');
 const $player1GameLog = $('.player-1-game-log');
 const $computerGameLog = $('.computer-game-log');
 const $winnerDiv = $('.winner-div');
@@ -308,9 +308,9 @@ function placePlayer(player) {
   // adds the players character class to the correct div
   $playerSquare.addClass(`${player.character}`);
   if (player1.total === computer.total){
-    $playerSquare.addClass('neutral-square');
+    $playerSquare.addClass('contested-square');
   } else {
-    $('.neutral-square').removeClass('neutral-square');
+    $('.contested-square').removeClass('contested-square');
   }
 }
 

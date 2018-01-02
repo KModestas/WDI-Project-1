@@ -168,7 +168,7 @@ h1 span:first-child {
   opacity: 0.5;
 }
 
-.roll-die-div {
+.die-div {
   display: none;
   width: 500px;
   height: 80px;
@@ -376,7 +376,8 @@ div.coals {
   background-repeat: no-repeat;
   opacity: 1;
   color: white;
-  text-shadow: 1px 1px black;
+  text-shadow: 2px 2px black;
+  font-weight: bold;
 }
 
 
@@ -386,7 +387,8 @@ div.presents {
   background-repeat: no-repeat;
   opacity: 1;
   color: white;
-  text-shadow: 1px 1px black;
+  text-shadow: 2px 2px black;
+  font-weight: bold;
 }
 
 
@@ -420,12 +422,8 @@ div.elf {
   text-shadow: 2px 2px white;
 }
 
-div.neutral-square {
+div.contested-square {
   border: 4px solid orange;
   color: orange;
   text-shadow: 2px 2px black;
-}
-
-.98 {
-  z-index: 5;
 }
