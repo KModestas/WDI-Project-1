@@ -194,10 +194,10 @@ function loadGame() {
     opacity: 1
   }, 1000);
   $gameBoard.addClass('visible');
-  $rollDieDiv.animate({
+  $dieDiv.animate({
     opacity: 1
   }, 1000);
-  $rollDieDiv.addClass('visible');
+  $dieDiv.addClass('visible');
 }
 
 
