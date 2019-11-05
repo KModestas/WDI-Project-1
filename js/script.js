@@ -75,7 +75,8 @@ const chimneys = [
 
 // candycanes array
 const candyCanes = [
-  { position: 78,
+  {
+    position: 78,
     targetPosition: 98
   },
   {
@@ -139,7 +140,7 @@ $proceed.on('click', function(){
 $characterButton.on('click', function(e){
   // assigns the character the player clicks on
   setPlayer1Property(e);
-  // computer assigne character after player
+  // computer assigned character after player
   computersChoice(e);
   // game log text color depending on character
   characterLogColor();
@@ -206,7 +207,7 @@ function loadGame() {
 // have if statement that checks if coal is true, if thats the case then dont process the turn and then change coal proerty to false;
 
 
-// player and computer object gets passed as arguments for process turn which gives all other function sin process turn access to the player/computer objects properties under the reference name/variable of "player"
+// player and computer object gets passed as arguments for process turn which gives all other functions in process turn access to the player/computer objects properties under the reference name of "player"
 $die.on('click', ()=> {
   $die.prop('disabled', true );
 
@@ -259,11 +260,6 @@ function processTurn(player) {
 
 function inactiveDie() {
   if (player1Turn === false) {
-    // $die.hover(function(){
-    //   $(this).css('width', '80px');
-    //   $(this).css('height', '50px');
-    //   $(this).css('cursor', 'wait');
-    // });
     $die.css('opacity', '0.5');
     player1Turn = true;
   } else if (player1Turn === true){

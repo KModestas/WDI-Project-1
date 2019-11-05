@@ -3,15 +3,15 @@
 }
 
 body {
-  background: url("https://ak1.picdn.net/shutterstock/videos/4245491/thumb/1.jpg");
+  background: url("./images/xmasBackground.jpg");
   background-size: cover;
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
-button, input {
-  font-family: 'Rubik', sans-serif;
+button,
+input {
+  font-family: "Rubik", sans-serif;
 }
-
 
 h1 {
   display: block;
@@ -39,7 +39,7 @@ h1 span:first-child {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  max-width: 420px;;
+  max-width: 420px;
   height: 560px;
   margin: 0 auto;
   margin-top: 50px;
@@ -55,26 +55,25 @@ h1 span:first-child {
   font-weight: bold;
 }
 
-
 .instructions img {
   height: 40px;
   width: 40px;
   margin: 0 10px 0 10px;
 }
 
-.instructions p:nth-of-type(4) img{
+.instructions p:nth-of-type(4) img {
   height: 50px;
   width: 30px;
   margin: 0 10px 0 10px;
 }
 
-.instructions p:nth-of-type(5) img{
+.instructions p:nth-of-type(5) img {
   height: 50px;
   width: 30px;
   margin: 0 10px 0 10px;
 }
 
-.instructions .proceed{
+.instructions .proceed {
   padding: 10px;
   margin: 20px;
   font-weight: bold;
@@ -118,12 +117,12 @@ h1 span:first-child {
   background-repeat: no-repeat;
 }
 
-.character-button{
+.character-button {
   height: 100px;
   width: 60px;
   font-size: 15px;
   font-weight: bold;
-  background: url('./images/santa-image.webp');
+  background: url("./images/cartoonSanta.png");
   background-size: contain;
   background-repeat: no-repeat;
   padding-top: 70px;
@@ -133,20 +132,18 @@ h1 span:first-child {
 
 .character-button:hover {
   color: orange;
-  border: 3px solid rgba(0,0,0,0);
+  border: 3px solid rgba(0, 0, 0, 0);
   cursor: pointer;
 }
 
-
 .elf-button {
-  background: url('./images/elf-image.jpg');
+  background: url("./images/elf-image.jpg");
   background-size: 100px;
   background-position: top center;
   background-repeat: no-repeat;
 }
 
 /*divs where game is played*/
-
 
 .game-board {
   border: 1px solid black;
@@ -175,11 +172,10 @@ h1 span:first-child {
   margin: 20px auto;
   align-items: center;
   background: #d3e8ff;
-  opacity: 0;   /*gets animated in*/
+  opacity: 0; /*gets animated in*/
   border-radius: 10px;
   border: 5px solid #0a5bb2;
 }
-
 
 /*logs display occurances of game */
 
@@ -193,7 +189,6 @@ h1 span:first-child {
   opacity: 1;
   /*z-index: 3;*/
 }
-
 
 /* gamelog text colors depending on character */
 
@@ -209,8 +204,8 @@ h1 span:first-child {
   width: 80px;
   height: 50px;
   margin-top: 4px;
-  background: url('http://weclipart.com/gimg/086115793A19A243/free-to-use-amp-public-domain-dice-clip-art.png');
-  background-size: cover;
+  background: url("./images/die.jpg");
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   border: none;
@@ -246,8 +241,6 @@ h1 span:first-child {
   display: none;
 }
 
-
-
 .play-again {
   height: 35px;
   font-size: 12px;
@@ -266,18 +259,12 @@ h1 span:first-child {
   cursor: pointer;
 }
 
-
-
-
-
 /*makes game visible - needs to be below elements*/
 .visible {
   display: flex;
 }
 
-
 /*square types*/
-
 
 /*square 52 + all other candycanes*/
 .candy-cane-img {
@@ -369,9 +356,8 @@ h1 span:first-child {
   top: 200px;
 }
 
-
 div.coals {
-  background: url("https://s-media-cache-ak0.pinimg.com/originals/34/9b/9a/349b9a0a1dff61ed8218b818f8628a0a.jpg");
+  background: url("./images/coal.jpg");
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 1;
@@ -379,23 +365,21 @@ div.coals {
   text-shadow: 2px 2px black;
   font-weight: bold;
 }
-
 
 div.presents {
-  background: url("http://weclipart.com/gimg/4B69D77980E5B22F/christmas-presents-clip-art-happy-holidays-830x889.png");
-  background-size: contain;
+  background: url("./images/cartoonPresent.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
   opacity: 1;
   color: white;
   text-shadow: 2px 2px black;
   font-weight: bold;
 }
-
 
 /*player character images*/
 
 div.santa {
-  background: url('https://vectortoons.com/wp-content/uploads/2015/11/santa-emoji-collection-3-001.jpg');
+  background: url("./images/cartoonSanta.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -407,10 +391,8 @@ div.santa {
   text-shadow: 2px 2px white;
 }
 
-
-
 div.elf {
-  background: url('./images/elf-image.jpg');
+  background: url("./images/elf-image.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
