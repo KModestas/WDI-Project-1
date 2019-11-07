@@ -379,7 +379,7 @@ div.presents {
 /*player character images*/
 
 div.santa {
-  background: url("css/images/cartoonSanta.png");
+  background: url("./images/cartoonSanta.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
