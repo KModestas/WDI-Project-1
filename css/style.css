@@ -204,6 +204,7 @@ h1 span:first-child {
   width: 80px;
   height: 50px;
   margin-top: 4px;
+  background-color: black;
   background: url("./images/die.jpg");
   background-size: contain;
   background-repeat: no-repeat;
@@ -367,6 +368,7 @@ div.coals {
 }
 
 div.presents {
+  background-color: green;
   background: url("./images/cartoonPresent.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -379,6 +381,7 @@ div.presents {
 /*player character images*/
 
 div.santa {
+  background-color: red;
   background: url("./images/cartoonSanta.png");
   background-size: cover;
   background-repeat: no-repeat;
