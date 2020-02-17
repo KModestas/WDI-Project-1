@@ -1,230 +1,226 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>First WDI Project</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Rubik:400,700"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./css/style.css" />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-      charset="utf-8"
-    ></script>
-  </head>
-  <body>
-    <h1><span>Chimneys & Candy Canes</span></h1>
+	<head>
+		<meta charset="utf-8" />
+		<title>First WDI Project</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet" />
+		<link rel="stylesheet" href="./css/style.css" />
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+			charset="utf-8"
+		></script>
+	</head>
+	<body>
+		<h1><span>Chimneys & Candy Canes</span></h1>
 
-    <div class="instructions">
-      <h2>How To Play</h2>
-      <p>Roll the die. First one to get to <span>exactly 100</span> wins</p>
-      <p>
-        If you Land on
-        <img
-          src="https://library.kissclipart.com/20190219/qxw/kissclipart-cartoon-present-christmas-clipart-gift-christmas-g-d3fbdbd369c3bf2c.png"
-        />
-        You get an <span>extra</span> go
-      </p>
-      <p>
-        If you Land on
-        <img
-          src="https://s-media-cache-ak0.pinimg.com/originals/34/9b/9a/349b9a0a1dff61ed8218b818f8628a0a.jpg"
-        />
-        you <span>miss</span> a go
-      </p>
-      <p>
-        If you land on
-        <img
-          src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png"
-          class=""
-        />
-        it will make you go <span>up</span>
-      </p>
-      <p>
-        If you land on
-        <img
-          src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png"
-        />will make you go <span>down</span>
-      </p>
-      <button class="proceed">PROCEED.</button>
-    </div>
+		<div class="instructions">
+			<h2>How To Play</h2>
+			<p>Roll the die. First one to get to <span>exactly 100</span> wins</p>
+			<p>
+				If you Land on
+				<img
+					src="https://library.kissclipart.com/20190219/qxw/kissclipart-cartoon-present-christmas-clipart-gift-christmas-g-d3fbdbd369c3bf2c.png"
+				/>
+				You get an <span>extra</span> go
+			</p>
+			<p>
+				If you Land on
+				<img
+					src="https://s-media-cache-ak0.pinimg.com/originals/34/9b/9a/349b9a0a1dff61ed8218b818f8628a0a.jpg"
+				/>
+				you <span>miss</span> a go
+			</p>
+			<p>
+				If you land on
+				<img
+					src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png"
+					class=""
+				/>
+				it will make you go <span>up</span>
+			</p>
+			<p>
+				If you land on
+				<img src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png" />will make
+				you go <span>down</span>
+			</p>
+			<button class="proceed">PROCEED</button>
+		</div>
 
-    <!-- character select screen-->
-    <div class="character-menu hide">
-      <h2>Select Your Character</h2>
-      <button class="character-button">Santa</button>
-      <button class="character-button elf-button">Elf</button>
-    </div>
+		<!-- character select screen-->
+		<div class="character-menu hide">
+			<h2>Select Your Character</h2>
+			<button class="character-button">Santa</button>
+			<button class="character-button elf-button">Elf</button>
+		</div>
 
-    <!-- gameboard consisiting of images and 100 squares -->
-    <main class="game-board hide">
-      <img
-        src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png"
-        class="candy-cane-img"
-      />
-      <img
-        src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png"
-        class="candy-cane-img candy-cane-img2"
-      />
-      <img
-        src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png"
-        class="candy-cane-img candy-cane-img3"
-      />
-      <img
-        src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png"
-        class="candy-cane-img candy-cane-img4"
-      />
-      <img
-        src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png"
-        class="candy-cane-img candy-cane-img5"
-      />
-      <img />
+		<!-- gameboard consisiting of images and 100 squares -->
+		<main class="game-board hide">
+			<img
+				src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png"
+				class="candy-cane-img"
+			/>
+			<img
+				src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png"
+				class="candy-cane-img candy-cane-img2"
+			/>
+			<img
+				src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png"
+				class="candy-cane-img candy-cane-img3"
+			/>
+			<img
+				src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png"
+				class="candy-cane-img candy-cane-img4"
+			/>
+			<img
+				src="https://openclipart.org/image/2400px/svg_to_png/28491/purzen-Candy-cane.png"
+				class="candy-cane-img candy-cane-img5"
+			/>
+			<img />
 
-      <img
-        class="chimney-img"
-        src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png"
-      />
-      <img
-        class="chimney-img chimney-img2"
-        src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png"
-      />
-      <img
-        class="chimney-img chimney-img3"
-        src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png"
-      />
-      <img
-        class="chimney-img chimney-img4"
-        src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png"
-      />
-      <img
-        class="chimney-img chimney-img5"
-        src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png"
-      />
+			<img
+				class="chimney-img"
+				src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png"
+			/>
+			<img
+				class="chimney-img chimney-img2"
+				src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png"
+			/>
+			<img
+				class="chimney-img chimney-img3"
+				src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png"
+			/>
+			<img
+				class="chimney-img chimney-img4"
+				src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png"
+			/>
+			<img
+				class="chimney-img chimney-img5"
+				src="http://www.clker.com/cliparts/s/t/c/l/C/t/chimney-with-snow-hi.png"
+			/>
 
-      <div data-id="100">100</div>
-      <div data-id="99">99</div>
-      <div data-id="98">98</div>
-      <div data-id="97">97</div>
-      <div data-id="96">96</div>
-      <div data-id="95" class="coals">95</div>
-      <div data-id="94">94</div>
-      <div data-id="93">93</div>
-      <div data-id="92">92</div>
-      <div data-id="91">91</div>
-      <div data-id="81">81</div>
-      <div data-id="82" class="presents">82</div>
-      <div data-id="83">83</div>
-      <div data-id="84">84</div>
-      <div data-id="85">85</div>
-      <div data-id="86">86</div>
-      <div data-id="87">87</div>
-      <div data-id="88">88</div>
-      <div data-id="89">89</div>
-      <div data-id="90">90</div>
-      <div data-id="80">80</div>
-      <div data-id="79">79</div>
-      <div data-id="78">78</div>
-      <div data-id="77">77</div>
-      <div data-id="76">76</div>
-      <div data-id="75">75</div>
-      <div data-id="74">74</div>
-      <div data-id="73" class="coals">73</div>
-      <div data-id="72">72</div>
-      <div data-id="71">71</div>
-      <div data-id="61">61</div>
-      <div data-id="62">62</div>
-      <div data-id="63">63</div>
-      <div data-id="64">64</div>
-      <div data-id="65">65</div>
-      <div data-id="66">66</div>
-      <div data-id="67">67</div>
-      <div data-id="68">68</div>
-      <div data-id="69">69</div>
-      <div data-id="70">70</div>
-      <div data-id="60">60</div>
-      <div data-id="59">59</div>
-      <div data-id="58">58</div>
-      <div data-id="57">57</div>
-      <div data-id="56" class="presents">56</div>
-      <div data-id="55">55</div>
-      <div data-id="54">54</div>
-      <div data-id="53">53</div>
-      <div data-id="52">52</div>
-      <div data-id="51">51</div>
-      <div data-id="41">41</div>
-      <div data-id="42">42</div>
-      <div data-id="43">43</div>
-      <div data-id="44">44</div>
-      <div data-id="45">45</div>
-      <div data-id="46">46</div>
-      <div data-id="47">47</div>
-      <div data-id="48">48</div>
-      <div data-id="49">49</div>
-      <div data-id="50">50</div>
-      <div data-id="40">40</div>
-      <div data-id="39">39</div>
-      <div data-id="38">38</div>
-      <div data-id="37">37</div>
-      <div data-id="36">36</div>
-      <div data-id="35">35</div>
-      <div data-id="34">34</div>
-      <div data-id="33">33</div>
-      <div data-id="32">32</div>
-      <div data-id="31">31</div>
-      <div data-id="21">21</div>
-      <div data-id="22" class="coals">22</div>
-      <div data-id="23">23</div>
-      <div data-id="24">24</div>
-      <div data-id="25">25</div>
-      <div data-id="26">26</div>
-      <div data-id="27">27</div>
-      <div data-id="28">28</div>
-      <div data-id="29">29</div>
-      <div data-id="30">30</div>
-      <div data-id="20">20</div>
-      <div data-id="19">19</div>
-      <div data-id="18">18</div>
-      <div data-id="17">17</div>
-      <div data-id="16" class="presents">16</div>
-      <div data-id="15">15</div>
-      <div data-id="14">14</div>
-      <div data-id="13" class="coals">13</div>
-      <div data-id="12">12</div>
-      <div data-id="11">11</div>
-      <div data-id="1">1</div>
-      <div data-id="2" class="presents">2</div>
-      <div data-id="3">3</div>
-      <div data-id="4">4</div>
-      <div data-id="5">5</div>
-      <div data-id="6">6</div>
-      <div data-id="7">7</div>
-      <div data-id="8">8</div>
-      <div data-id="9">9</div>
-      <div data-id="10">10</div>
-    </main>
+			<div data-id="100">100</div>
+			<div data-id="99">99</div>
+			<div data-id="98">98</div>
+			<div data-id="97">97</div>
+			<div data-id="96">96</div>
+			<div data-id="95" class="coals">95</div>
+			<div data-id="94">94</div>
+			<div data-id="93">93</div>
+			<div data-id="92">92</div>
+			<div data-id="91">91</div>
+			<div data-id="81">81</div>
+			<div data-id="82" class="presents">82</div>
+			<div data-id="83">83</div>
+			<div data-id="84">84</div>
+			<div data-id="85">85</div>
+			<div data-id="86">86</div>
+			<div data-id="87">87</div>
+			<div data-id="88">88</div>
+			<div data-id="89">89</div>
+			<div data-id="90">90</div>
+			<div data-id="80">80</div>
+			<div data-id="79">79</div>
+			<div data-id="78">78</div>
+			<div data-id="77">77</div>
+			<div data-id="76">76</div>
+			<div data-id="75">75</div>
+			<div data-id="74">74</div>
+			<div data-id="73" class="coals">73</div>
+			<div data-id="72">72</div>
+			<div data-id="71">71</div>
+			<div data-id="61">61</div>
+			<div data-id="62">62</div>
+			<div data-id="63">63</div>
+			<div data-id="64">64</div>
+			<div data-id="65">65</div>
+			<div data-id="66">66</div>
+			<div data-id="67">67</div>
+			<div data-id="68">68</div>
+			<div data-id="69">69</div>
+			<div data-id="70">70</div>
+			<div data-id="60">60</div>
+			<div data-id="59">59</div>
+			<div data-id="58">58</div>
+			<div data-id="57">57</div>
+			<div data-id="56" class="presents">56</div>
+			<div data-id="55">55</div>
+			<div data-id="54">54</div>
+			<div data-id="53">53</div>
+			<div data-id="52">52</div>
+			<div data-id="51">51</div>
+			<div data-id="41">41</div>
+			<div data-id="42">42</div>
+			<div data-id="43">43</div>
+			<div data-id="44">44</div>
+			<div data-id="45">45</div>
+			<div data-id="46">46</div>
+			<div data-id="47">47</div>
+			<div data-id="48">48</div>
+			<div data-id="49">49</div>
+			<div data-id="50">50</div>
+			<div data-id="40">40</div>
+			<div data-id="39">39</div>
+			<div data-id="38">38</div>
+			<div data-id="37">37</div>
+			<div data-id="36">36</div>
+			<div data-id="35">35</div>
+			<div data-id="34">34</div>
+			<div data-id="33">33</div>
+			<div data-id="32">32</div>
+			<div data-id="31">31</div>
+			<div data-id="21">21</div>
+			<div data-id="22" class="coals">22</div>
+			<div data-id="23">23</div>
+			<div data-id="24">24</div>
+			<div data-id="25">25</div>
+			<div data-id="26">26</div>
+			<div data-id="27">27</div>
+			<div data-id="28">28</div>
+			<div data-id="29">29</div>
+			<div data-id="30">30</div>
+			<div data-id="20">20</div>
+			<div data-id="19">19</div>
+			<div data-id="18">18</div>
+			<div data-id="17">17</div>
+			<div data-id="16" class="presents">16</div>
+			<div data-id="15">15</div>
+			<div data-id="14">14</div>
+			<div data-id="13" class="coals">13</div>
+			<div data-id="12">12</div>
+			<div data-id="11">11</div>
+			<div data-id="1">1</div>
+			<div data-id="2" class="presents">2</div>
+			<div data-id="3">3</div>
+			<div data-id="4">4</div>
+			<div data-id="5">5</div>
+			<div data-id="6">6</div>
+			<div data-id="7">7</div>
+			<div data-id="8">8</div>
+			<div data-id="9">9</div>
+			<div data-id="10">10</div>
+		</main>
 
-    <!-- section at the bottom of screen where player rolls die -->
-    <div class="die-div hide">
-      <div class="logs">
-        <p class="player-1-game-log"></p>
-        <p class="computer-game-log"></p>
+		<!-- section at the bottom of screen where player rolls die -->
+		<div class="die-div hide">
+			<div class="logs">
+				<p class="player-1-game-log"></p>
+				<p class="computer-game-log"></p>
 
-        <div class="winner-div">
-          <h2 class="winner-name">Winner Wins!</h2>
-          <button class="play-again">PLAY AGAIN?</button>
-        </div>
-      </div>
-      <!-- when clicked, rolls die -->
-      <button class="die"></button>
-    </div>
+				<div class="winner-div">
+					<h2 class="winner-name">Winner Wins!</h2>
+					<button class="play-again">PLAY AGAIN?</button>
+				</div>
+			</div>
+			<!-- when clicked, rolls die -->
+			<button class="die"></button>
+		</div>
 
-    <!-- in game music -->
-    <audio loop>
-      Your browser does not support the audio element.
-    </audio>
+		<!-- in game music -->
+		<audio loop>
+			Your browser does not support the audio element.
+		</audio>
 
-    <script src="./js/script.js" type="text/javascript"></script>
-  </body>
+		<script src="./js/script.js" type="text/javascript"></script>
+	</body>
 </html>
